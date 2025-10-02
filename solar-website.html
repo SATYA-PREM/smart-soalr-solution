@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartSolar Solution - Your Green Energy Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f39c12;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #f39c12;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #f39c12;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Fullscreen Slideshow Section */
+        .slideshow-hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            margin-top: 72px;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .slide img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.55) 60%);
+        }
+
+        .slide-content {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            text-align: center;
+            z-index: 2;
+            padding: 0 20px;
+            max-width: 900px;
+        }
+
+        .slide-content h1 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .slide-content p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            opacity: 0.95;
+            margin-bottom: 1.25rem;
+        }
+
+        .offer-badge {
+            display: inline-block;
+            background: #e74c3c;
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 18px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: #f39c12;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background: #e67e22;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(243, 156, 18, 0.3);
+        }
+
+        /* Slide controls */
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 3;
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .dots-container {
+            position: absolute;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .dot.active,
+        .dot:hover {
+            background: #fff;
+            transform: scale(1.2);
+        }
+
+        /* Offers Section */
+        .offers {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .offers h2,
+        .about-text h2,
+        .contact h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .offer-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .offer-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .offer-content {
+            padding: 1.5rem;
+        }
+
+        .offer-content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .offer-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1rem;
+        }
+
+        .new-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e74c3c;
+        }
+
+        .offer-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: #f39c12;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .offer-btn:hover {
+            background: #e67e22;
+            transform: translateY(-2px);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background: #fff;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .feature i {
+            color: #27ae60;
+            font-size: 1.2rem;
+        }
+
+        .feature span {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item i {
+            color: #f39c12;
+            font-size: 1.5rem;
+            margin-top: 0.3rem;
+        }
+
+        .contact-item h3 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .contact-item p {
+            color: #666;
+        }
+
+        .contact-form {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #f39c12;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #f39c12;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #e67e22;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: #fff;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #f39c12;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #f39c12;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #34495e;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #f39c12;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ================================== */
+        /* RESPONSIVE MEDIA QUERIES */
+        /* ================================== */
+
+        /* Extra Large Desktops - 1441px and above */
+        @media (min-width: 1441px) {
+            .container {
+                max-width: 1400px;
+            }
+
+            .slideshow-hero {
+                height: 100vh;
+            }
+
+            .slide-content {
+                max-width: 1000px;
+            }
+
+            .slide-content h1 {
+                font-size: 3.5rem;
+            }
+
+            .offers-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 3rem;
+            }
+        }
+
+        /* Large Desktops - 1281px to 1440px */
+        @media (min-width: 1281px) and (max-width: 1440px) {
+            .container {
+                max-width: 1280px;
+            }
+
+            .slide-content h1 {
+                font-size: 3.2rem;
+            }
+
+            .offers-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2.5rem;
+            }
+        }
+
+        /* Desktop/Laptop - 1025px to 1280px */
+        @media (min-width: 1025px) and (max-width: 1280px) {
+            .container {
+                max-width: 1200px;
+            }
+
+            .slide-content h1 {
+                font-size: 3rem;
+            }
+
+            .offers-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+
+            .about-content {
+                gap: 2.5rem;
+            }
+        }
+
+        /* Large Tablets/Small Laptops - 769px to 1024px */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                padding: 0 30px;
+            }
+
+            .slideshow-hero {
+                margin-top: 72px;
+                height: 80vh;
+            }
+
+            .slide-content {
+                max-width: 800px;
+            }
+
+            .slide-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .slide-content p {
+                font-size: 1.1rem;
+            }
+
+            .prev,
+            .next {
+                padding: 8px 12px;
+                font-size: 1rem;
+            }
+
+            .offers {
+                padding: 4rem 0;
+            }
+
+            .offers h2,
+            .about-text h2,
+            .contact h2 {
+                font-size: 2.2rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .offers-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .about {
+                padding: 4rem 0;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .about-image img {
+                height: 350px;
+            }
+
+            .contact {
+                padding: 4rem 0;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        /* Small Tablets - 601px to 768px */
+        @media (min-width: 601px) and (max-width: 768px) {
+            .slideshow-hero {
+                margin-top: 70px;
+                height: 70vh;
+            }
+
+            .slide-content {
+                max-width: 600px;
+                padding: 0 30px;
+            }
+
+            .slide-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .slide-content p {
+                font-size: 1rem;
+            }
+
+            .cta-btn {
+                padding: 12px 24px;
+                font-size: 0.95rem;
+            }
+
+            .prev,
+            .next {
+                padding: 8px 10px;
+                font-size: 0.9rem;
+            }
+
+            .prev {
+                left: 15px;
+            }
+
+            .next {
+                right: 15px;
+            }
+
+            .offers {
+                padding: 3.5rem 0;
+            }
+
+            .offers h2,
+            .about-text h2,
+            .contact h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .offers-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .offer-card img {
+                height: 200px;
+            }
+
+            .about {
+                padding: 3.5rem 0;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-image img {
+                height: 300px;
+            }
+
+            .contact {
+                padding: 3.5rem 0;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        /* Large Mobile - 481px to 600px */
+        @media (min-width: 481px) and (max-width: 600px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: #fff;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .logo i {
+                font-size: 1.5rem;
+            }
+
+            .slideshow-hero {
+                margin-top: 70px;
+                height: 60vh;
+            }
+
+            .slide-content {
+                max-width: 500px;
+                padding: 0 25px;
+            }
+
+            .slide-content h1 {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .slide-content p {
+                font-size: 0.95rem;
+                margin-bottom: 1rem;
+            }
+
+            .offer-badge {
+                padding: 4px 10px;
+                font-size: 0.8rem;
+                margin-bottom: 10px;
+            }
+
+            .cta-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .prev,
+            .next {
+                display: none;
+            }
+
+            .offers {
+                padding: 3rem 0;
+            }
+
+            .offers h2,
+            .about-text h2,
+            .contact h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .offers-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .offer-card img {
+                height: 180px;
+            }
+
+            .offer-content {
+                padding: 1.2rem;
+            }
+
+            .about {
+                padding: 3rem 0;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .about-text p {
+                font-size: 1rem;
+            }
+
+            .about-image img {
+                height: 250px;
+            }
+
+            .contact {
+                padding: 3rem 0;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .footer {
+                padding: 2.5rem 0 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Small Mobile - 321px to 480px */
+        @media (min-width: 321px) and (max-width: 480px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: #fff;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 1.5rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                margin: 0.5rem 0;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .logo i {
+                font-size: 1.4rem;
+                margin-right: 8px;
+            }
+
+            .slideshow-hero {
+                margin-top: 70px;
+                height: 50vh;
+            }
+
+            .slide-content {
+                max-width: 400px;
+                padding: 0 20px;
+            }
+
+            .slide-content h1 {
+                font-size: 1.8rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .slide-content p {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+
+            .offer-badge {
+                padding: 3px 8px;
+                font-size: 0.75rem;
+                margin-bottom: 8px;
+            }
+
+            .cta-btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+
+            .prev,
+            .next {
+                display: none;
+            }
+
+            .dots-container {
+                bottom: 15px;
+                gap: 8px;
+            }
+
+            .dot {
+                width: 8px;
+                height: 8px;
+            }
+
+            .offers {
+                padding: 2.5rem 0;
+            }
+
+            .offers h2,
+            .about-text h2,
+            .contact h2 {
+                font-size: 1.6rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .offers-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .offer-card img {
+                height: 160px;
+            }
+
+            .offer-content {
+                padding: 1rem;
+            }
+
+            .offer-content h3 {
+                font-size: 1.1rem;
+            }
+
+            .offer-content p {
+                font-size: 0.9rem;
+            }
+
+            .new-price {
+                font-size: 1.3rem;
+            }
+
+            .about {
+                padding: 2.5rem 0;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .about-text p {
+                font-size: 0.95rem;
+            }
+
+            .about-image img {
+                height: 220px;
+            }
+
+            .feature {
+                gap: 0.8rem;
+            }
+
+            .feature span {
+                font-size: 0.9rem;
+            }
+
+            .contact {
+                padding: 2.5rem 0;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .contact-item {
+                margin-bottom: 1.5rem;
+            }
+
+            .contact-item h3 {
+                font-size: 1rem;
+            }
+
+            .contact-item p {
+                font-size: 0.9rem;
+            }
+
+            .contact-form {
+                padding: 1.2rem;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+
+            .submit-btn {
+                padding: 12px;
+                font-size: 1rem;
+            }
+
+            .footer {
+                padding: 2rem 0 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .footer-section h3 {
+                font-size: 1rem;
+            }
+
+            .social-links a {
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+            }
+        }
+
+        /* Extra Small Mobile - 320px and below */
+        @media (max-width: 320px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 65px;
+                flex-direction: column;
+                background: #fff;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 1rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                margin: 0.3rem 0;
+            }
+
+            .nav-link {
+                font-size: 0.9rem;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            .logo i {
+                font-size: 1.3rem;
+                margin-right: 6px;
+            }
+
+            .slideshow-hero {
+                margin-top: 65px;
+                height: 45vh;
+            }
+
+            .slide-content {
+                max-width: 300px;
+                padding: 0 15px;
+            }
+
+            .slide-content h1 {
+                font-size: 1.5rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .slide-content p {
+                font-size: 0.8rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .offer-badge {
+                padding: 2px 6px;
+                font-size: 0.7rem;
+                margin-bottom: 6px;
+            }
+
+            .cta-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+
+            .prev,
+            .next {
+                display: none;
+            }
+
+            .dots-container {
+                bottom: 10px;
+                gap: 6px;
+            }
+
+            .dot {
+                width: 6px;
+                height: 6px;
+            }
+
+            .offers {
+                padding: 2rem 0;
+            }
+
+            .offers h2,
+            .about-text h2,
+            .contact h2 {
+                font-size: 1.4rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .offers-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .offer-card img {
+                height: 140px;
+            }
+
+            .offer-content {
+                padding: 0.8rem;
+            }
+
+            .offer-content h3 {
+                font-size: 1rem;
+            }
+
+            .offer-content p {
+                font-size: 0.8rem;
+            }
+
+            .old-price {
+                font-size: 0.9rem;
+            }
+
+            .new-price {
+                font-size: 1.2rem;
+            }
+
+            .offer-btn {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+
+            .about {
+                padding: 2rem 0;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .about-text p {
+                font-size: 0.85rem;
+            }
+
+            .about-image img {
+                height: 200px;
+            }
+
+            .feature {
+                gap: 0.6rem;
+            }
+
+            .feature i {
+                font-size: 1rem;
+            }
+
+            .feature span {
+                font-size: 0.8rem;
+            }
+
+            .contact {
+                padding: 2rem 0;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .contact-item {
+                margin-bottom: 1.2rem;
+            }
+
+            .contact-item i {
+                font-size: 1.2rem;
+            }
+
+            .contact-item h3 {
+                font-size: 0.9rem;
+            }
+
+            .contact-item p {
+                font-size: 0.8rem;
+            }
+
+            .contact-form {
+                padding: 1rem;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+            }
+
+            .submit-btn {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+
+            .footer {
+                padding: 1.5rem 0 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .footer-section h3 {
+                font-size: 0.9rem;
+            }
+
+            .footer-section ul li {
+                margin-bottom: 0.3rem;
+            }
+
+            .footer-section ul li a {
+                font-size: 0.8rem;
+            }
+
+            .social-links {
+                gap: 0.8rem;
+            }
+
+            .social-links a {
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                font-size: 0.8rem;
+            }
+
+            .footer-bottom p {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Landscape Orientation - Mobile Devices */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .slideshow-hero {
+                height: 100vh;
+            }
+
+            .slide-content h1 {
+                font-size: 2rem;
+            }
+
+            .slide-content p {
+                font-size: 1rem;
+            }
+
+            .offers {
+                padding: 2rem 0;
+            }
+
+            .about {
+                padding: 2rem 0;
+            }
+
+            .contact {
+                padding: 2rem 0;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+
+            .header,
+            .prev,
+            .next,
+            .dots-container,
+            .hamburger {
+                display: none !important;
+            }
+
+            .slideshow-hero {
+                margin-top: 0;
+                height: auto;
+                page-break-inside: avoid;
+            }
+
+            .slide {
+                position: static;
+                display: block !important;
+                height: auto;
+                page-break-inside: avoid;
+                margin-bottom: 1rem;
+            }
+
+            .slide::after {
+                display: none;
+            }
+
+            .slide-content {
+                position: static;
+                transform: none;
+                color: #333;
+                text-align: left;
+                padding: 1rem 0;
+            }
+
+            body {
+                color: #000;
+                background: #fff;
+            }
+
+            .offers,
+            .about,
+            .contact {
+                padding: 1rem 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <i class="fas fa-solar-panel"></i>
+                    <span>SmartSolar Solution</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About Us</a></li>
+                    <li><a href="#offers" class="nav-link">Offers</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Fullscreen Slideshow directly after header -->
+    <section id="home" class="slideshow-hero">
+        <div class="slide active">
+            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                alt="Solar Panel Installation">
+            <div class="slide-content">
+                <div class="offer-badge">20% OFF</div>
+                <h1>Premium Solar Panels</h1>
+                <p>High-efficiency monocrystalline panels with 25-year performance warranty</p>
+                <a href="#offers" class="cta-btn">View Offers</a>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1594736797933-d0c0949c2e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                alt="Solar Battery Storage">
+            <div class="slide-content">
+                <div class="offer-badge">15% OFF</div>
+                <h1>Advanced Battery Storage</h1>
+                <p>Reliable lithium storage that keeps homes powered day and night</p>
+                <a href="#offers" class="cta-btn">Shop Batteries</a>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                alt="Solar Inverter">
+            <div class="slide-content">
+                <div class="offer-badge">25% OFF</div>
+                <h1>Smart Inverters</h1>
+                <p>Grid-tie and off-grid inverters with smart monitoring and safety</p>
+                <a href="#offers" class="cta-btn">See Inverters</a>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="prev" onclick="changeSlide(-1)">❮</a>
+        <a class="next" onclick="changeSlide(1)">❯</a>
+
+        <!-- Dots -->
+        <div class="dots-container">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </section>
+
+    <!-- Offers -->
+    <section id="offers" class="offers">
+        <div class="container">
+            <h2>Current Offers</h2>
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Solar Panel Offer">
+                    <div class="offer-content">
+                        <h3>Solar Panel Bundle</h3>
+                        <p>Complete solar panel system with installation</p>
+                        <div class="price">
+                            <span class="old-price">₹2,50,000</span>
+                            <span class="new-price">₹2,00,000</span>
+                        </div>
+                        <a href="#contact" class="offer-btn">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="offer-card">
+                    <img src="https://images.unsplash.com/photo-1594736797933-d0c0949c2e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Battery Storage Offer">
+                    <div class="offer-content">
+                        <h3>Battery Storage System</h3>
+                        <p>High-capacity lithium battery backup solution</p>
+                        <div class="price">
+                            <span class="old-price">₹1,50,000</span>
+                            <span class="new-price">₹1,27,500</span>
+                        </div>
+                        <a href="#contact" class="offer-btn">Get Quote</a>
+                    </div>
+                </div>
+
+                <div class="offer-card">
+                    <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Inverter Offer">
+                    <div class="offer-content">
+                        <h3>Smart Inverter Package</h3>
+                        <p>Advanced inverter with monitoring capabilities</p>
+                        <div class="price">
+                            <span class="old-price">₹80,000</span>
+                            <span class="new-price">₹60,000</span>
+                        </div>
+                        <a href="#contact" class="offer-btn">Get Quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About SmartSolar Solution</h2>
+                    <p>SmartSolar Solution provides premium solar panels, batteries, and inverters with expert
+                        installation and support, helping homes and businesses switch to clean energy with confidence.
+                    </p>
+                    <div class="features">
+                        <div class="feature"><i class="fas fa-check-circle"></i><span>25+ Years Panel Warranty</span>
+                        </div>
+                        <div class="feature"><i class="fas fa-check-circle"></i><span>Professional Installation
+                                Service</span></div>
+                        <div class="feature"><i class="fas fa-check-circle"></i><span>24/7 Customer Support</span></div>
+                        <div class="feature"><i class="fas fa-check-circle"></i><span>Government Subsidy
+                                Assistance</span></div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                        alt="Solar Installation Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Address</h3>
+                            <p>123 Solar Street, Green City, State 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+91 98765 43210</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@smartsolarsolution.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Working Hours</h3>
+                            <p>Mon - Sat: 9:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group"><input type="text" placeholder="Your Name" required></div>
+                        <div class="form-group"><input type="email" placeholder="Your Email" required></div>
+                        <div class="form-group"><input type="tel" placeholder="Phone Number" required></div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="">Select Service</option>
+                                <option value="solar-panels">Solar Panels</option>
+                                <option value="batteries">Battery Storage</option>
+                                <option value="inverters">Inverters</option>
+                                <option value="complete-system">Complete Solar System</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><textarea placeholder="Your Message" rows="5"></textarea></div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo"><i class="fas fa-solar-panel"></i><span>SmartSolar Solution</span></div>
+                    <p>Leading provider of solar energy solutions for residential and commercial customers.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#offers">Offers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li>Solar Panel Installation</li>
+                        <li>Battery Storage Systems</li>
+                        <li>Inverter Solutions</li>
+                        <li>Maintenance & Support</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SmartSolar Solution. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Slideshow
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        function showSlide(index) {
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            if (slides[index]) { slides[index].classList.add('active'); dots[index].classList.add('active'); }
+        }
+        function nextSlide() { currentSlideIndex = (currentSlideIndex + 1) % slides.length; showSlide(currentSlideIndex); }
+        function prevSlide() { currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length; showSlide(currentSlideIndex); }
+        function changeSlide(dir) { dir === 1 ? nextSlide() : prevSlide(); }
+        function currentSlide(i) { currentSlideIndex = i - 1; showSlide(currentSlideIndex); }
+        setInterval(nextSlide, 5000);
+
+        // Mobile menu
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) { hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navMenu.classList.toggle('active'); }); }
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => { hamburger.classList.remove('active'); navMenu.classList.remove('active'); }));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = document.querySelector('.header').offsetHeight;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Contact form
+        const form = document.querySelector('.contact-form form');
+        if (form) {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const name = this.querySelector('input[type="text"]').value.trim();
+                const email = this.querySelector('input[type="email"]').value.trim();
+                const phone = this.querySelector('input[type="tel"]').value.trim();
+                if (!name || !email || !phone) { alert('Please fill in all required fields.'); return; }
+                alert(`Thank you, ${name}! We have received your inquiry and will contact you soon.`);
+                this.reset();
+            });
+        }
+
+        // Header opacity tweak on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            header.style.background = window.scrollY > 100 ? 'rgba(255,255,255,0.98)' : 'rgba(255,255,255,0.95)';
+        });
+
+
+
+        
+
+    </script>
