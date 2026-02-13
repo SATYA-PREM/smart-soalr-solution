@@ -74,7 +74,7 @@
 
 
                 <div class="hero-actions">
-                    <a href="#solutions" class="btn primary-btn">Explore Solutions</a>
+                    <a href="offer.html" class="btn primary-btn">Explore Solutions</a>
                     <a href="https://wa.me/9931798080?text=Hello%20I%20want%20more%20information" target="_blank"
                         class="btn primary-btn" style="
      background:#25D366;
@@ -108,8 +108,6 @@
                     <img src="ChatGPT Image Feb 11, 2026, 12_12_02 PM.png" class="slide">
                     <img src="ChatGPT Image Feb 10, 2026, 09_00_21 PM.png" class="slide">
                     <img src="ChatGPT Image Feb 11, 2026, 12_23_15 PM.png" class="slide">
-
-
                 </div>
             </div>
 
@@ -162,7 +160,32 @@
 
 
 
-                        <a href="#contact" class="offer-btn">Request Quote</a>
+                        <a href="#contact" class="offer-btn">Get Details</a>
+                        <a href="https://wa.me/9931798080?text=Hello%20I%20want%20more%20information" target="_blank"
+                            class="btn primary-btn" style="
+     background:#25D366;
+     color:white;
+     padding:12px 20px;
+     text-decoration:none;
+     font-weight:bold;
+     display:inline-flex;
+     align-items:center;
+     gap:8px;">
+                            <i class="fa-brands fa-whatsapp" style="font-size:22px;"></i>
+                            Contact Us
+                        </a>
+                    </div>
+                </div><!-- Commercial Solar -->
+                <div class="offer-card">
+                    <img src="ChatGPT Image Feb 12, 2026, 01_44_58 PM.png" alt="Commercial Solar System">
+
+                    <div class="offer-content">
+                        <h3>Commercial Solar Package</h3>
+                        <p>Ideal for schools, petrol pumps, rice mills, factories, showrooms and industrial setups.</p>
+
+
+
+                        <a href="#contact" class="offer-btn">Get Details</a>
                         <a href="https://wa.me/9931798080?text=Hello%20I%20want%20more%20information" target="_blank"
                             class="btn primary-btn" style="
      background:#25D366;
@@ -340,190 +363,8 @@
         </div>
     </footer>
 
-    <script>
+    <script src="script.js"></script>
 
- document.addEventListener("DOMContentLoaded", () => {
-
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    const header = document.querySelector('.header');
-
-    /* =========================
-       MOBILE MENU
-    ========================== */
-
-    if (hamburger && navMenu) {
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-
-            // Prevent background scroll when menu open
-            document.body.classList.toggle('menu-open');
-        });
-
-        // Close menu when clicking nav link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            });
-        });
-
-        // Close menu if clicking outside
-        document.addEventListener('click', (e) => {
-            if (!navMenu.contains(e.target) && 
-                !hamburger.contains(e.target) && 
-                navMenu.classList.contains('active')) {
-
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            }
-        });
-    }
-
-
-    /* =========================
-       SMOOTH SCROLL (SAFE)
-    ========================== */
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-        anchor.addEventListener('click', function (e) {
-
-            const targetId = this.getAttribute('href');
-
-            // Skip if just "#"
-            if (targetId.length <= 1) return;
-
-            const target = document.querySelector(targetId);
-
-            if (target) {
-                e.preventDefault();
-
-                const headerHeight = header ? header.offsetHeight : 0;
-
-                const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
-                const offsetPosition = elementPosition - headerHeight - 10;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-
-    /* =========================
-       ACTIVE LINK ON SCROLL
-    ========================== */
-
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll(".nav-link");
-
-    window.addEventListener("scroll", () => {
-        let current = "";
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - header.offsetHeight - 20;
-            if (pageYOffset >= sectionTop) {
-                current = section.getAttribute("id");
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove("active-link");
-            if (link.getAttribute("href") === `#${current}`) {
-                link.classList.add("active-link");
-            }
-        });
-    });
-
-});
-
-
-        // Contact form
-        const form = document.querySelector('.contact-form form');
-
-if (form) {
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const name = this.querySelector('input[type="text"]').value.trim();
-        const email = this.querySelector('input[type="email"]').value.trim();
-        const phone = this.querySelector('input[type="tel"]').value.trim();
-        const service = this.querySelector('select').value;
-        const message = this.querySelector('textarea').value.trim();
-
-        // Only Name + Phone required
-        if (!name || !phone) {
-            alert('Please enter your Name and Phone number.');
-            return;
-        }
-
-        let whatsappMessage = `Hello, I am interested in solar services.%0A%0A`;
-        whatsappMessage += `Name: ${name}%0A`;
-        whatsappMessage += `Phone: ${phone}%0A`;
-
-        if (email) {
-            whatsappMessage += `Email: ${email}%0A`;
-        }
-
-        if (service) {
-            whatsappMessage += `Service: ${service}%0A`;
-        }
-
-        if (message) {
-            whatsappMessage += `Message: ${message}%0A`;
-        }
-
-        const whatsappURL = `https://wa.me/919931798080?text=${whatsappMessage}`;
-        window.open(whatsappURL, '_blank');
-
-        this.reset();
-    });
-}
-
-
-
-        // Header opacity on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            header.style.background = window.scrollY > 100 ? 'rgba(255,255,255,0.98)' : 'rgba(255,255,255,0.95)';
-        });
-
-
-        let slides = document.querySelectorAll(".slide");
-        let current = 0;
-
-        setInterval(() => {
-            slides[current].classList.remove("active");
-            current = (current + 1) % slides.length;
-            slides[current].classList.add("active");
-        }, 3500);
-
-        const nextBtn = document.querySelector(".next");
-        const prevBtn = document.querySelector(".prev");
-
-
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove("active"));
-            slides[index].classList.add("active");
-        }
-
-        nextBtn.addEventListener("click", () => {
-            current = (current + 1) % slides.length;
-            showSlide(current);
-        });
-
-        prevBtn.addEventListener("click", () => {
-            current = (current - 1 + slides.length) % slides.length;
-            showSlide(current);
-        });
-    </script>
 </body>
 
 </html>
