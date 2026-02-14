@@ -1635,3 +1635,220 @@ body.menu-open {
         white-space: nowrap;
     }
 }
+/* GRID */
+.service-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap:22px;
+    margin-top:25px;
+}
+
+/* CARD */
+.solar-card{
+    background:#ffffff;
+    padding:22px;
+    border-radius:14px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.08);
+    transition:all .35s ease;
+    position:relative;
+    border:1px solid #eee;
+}
+
+.solar-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 40px rgba(0,0,0,0.12);
+}
+
+/* Highlight Card */
+.solar-card.highlight{
+    border:2px solid #f7b500;
+    transform:scale(1.03);
+}
+
+/* Badge */
+.badge{
+    position:absolute;
+    top:-10px;
+    left:18px;
+    background:#f7b500;
+    color:#000;
+    padding:4px 10px;
+    font-size:12px;
+    border-radius:20px;
+    font-weight:600;
+}
+
+/* Typography */
+.solar-card h3{
+    margin-top:10px;
+    margin-bottom:12px;
+}
+
+.specs{
+    background:#f8f8f8;
+    padding:10px;
+    border-radius:8px;
+    margin-bottom:14px;
+    font-size:14px;
+}
+
+.solar-card ul{
+    padding-left:18px;
+    margin:8px 0 14px 0;
+}
+
+.backup{
+    font-size:13px;
+    font-weight:600;
+    color:#1b7f3b;
+}
+
+/* CTA */
+.service-cta{
+    text-align:center;
+    margin-top:35px;
+}
+
+.contact-btn{
+    background:#111;
+    color:#fff;
+    padding:14px 34px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.contact-btn:hover{
+    background:#f7b500;
+    color:#000;
+}
+
+/* MOBILE IMPROVEMENT */
+@media(max-width:600px){
+    .solar-card{
+        padding:18px;
+    }
+    .solar-card.highlight{
+        transform:none;
+    }
+}
+.form-modal{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.form-modal.active{
+    display:flex;
+}
+
+.modal-box{
+    background:#fff;
+    padding:30px 35px;
+    border-radius:14px;
+    width:360px;
+    text-align:center;
+    animation: pop .25s ease;
+}
+
+@keyframes pop{
+    from{transform:scale(.85);opacity:0}
+    to{transform:scale(1);opacity:1}
+}
+
+.modal-actions{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+}
+
+.modal-btn{
+    flex:1;
+    padding:12px;
+    border-radius:8px;
+    font-weight:600;
+    cursor:pointer;
+    text-decoration:none;
+}
+
+.email-btn{ background:#f59e0b;color:white; }
+.whatsapp-btn{ background:#22c55e;color:white; }
+.offer-actions{
+    display:flex;
+    justify-content:center;   /* horizontal center */
+    align-items:center;       /* vertical alignment */
+    gap:18px;                 /* spacing between buttons */
+    margin-top:20px;
+    flex-wrap:wrap;           /* prevents overflow on small screens */
+}
+.gallery{
+    padding:60px 5%;
+    background:#f7f7f7;
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap:18px;
+}
+
+/* tablet landscape */
+@media (max-width:1400px){
+    .gallery-grid{ grid-template-columns:repeat(4,1fr); }
+}
+
+/* tablet portrait */
+@media (max-width:1000px){
+    .gallery-grid{ grid-template-columns:repeat(3,1fr); }
+}
+
+/* mobile */
+@media (max-width:700px){
+    .gallery-grid{ grid-template-columns:repeat(2,1fr); }
+}
+
+/* small mobile */
+@media (max-width:420px){
+    .gallery-grid{ grid-template-columns:1fr; }
+}
+.gallery-item{
+    overflow:hidden;
+    border-radius:14px;
+    background:#ddd;
+    aspect-ratio: 1 / 1;   /* makes all boxes equal */
+    position:relative;
+}
+
+.gallery-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition: transform .4s ease;
+}
+
+/* hover zoom */
+.gallery-item:hover img{
+    transform:scale(1.12);
+}
+.gallery-item::after{
+    content:"View";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.35);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    transition:.3s;
+    font-weight:600;
+}
+
+.gallery-item:hover::after{
+    opacity:1;
+}

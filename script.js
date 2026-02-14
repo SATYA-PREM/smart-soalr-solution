@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
 
 /* =====================================================
-   SAFE SELECTOR HELPER
+   HELPERS
 ===================================================== */
-const $ = (sel) => document.querySelector(sel);
-const $$ = (sel) => document.querySelectorAll(sel);
+const $ = (s, p=document)=>p.querySelector(s);
+const $$ = (s, p=document)=>p.querySelectorAll(s);
 
 
 /* =====================================================
@@ -20,21 +20,20 @@ if (hamburger && navMenu) {
         document.body.classList.toggle('menu-open');
     });
 
-    $$('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        });
+    $$('.nav-link').forEach(link =>
+        link.addEventListener('click', closeMenu)
+    );
+
+    document.addEventListener('click', e=>{
+        if(!navMenu.contains(e.target) && !hamburger.contains(e.target))
+            closeMenu();
     });
 
-    document.addEventListener('click', (e) => {
-        if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        }
-    });
+    function closeMenu(){
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.classList.remove('menu-open');
+    }
 }
 
 
@@ -43,139 +42,156 @@ if (hamburger && navMenu) {
 ===================================================== */
 const header = $('.header');
 
-$$('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-
-        const id = this.getAttribute('href');
-        if (id.length <= 1) return;
-
+$$('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
         const target = $(id);
-        if (!target) return;
+        if(!target) return;
 
         e.preventDefault();
-
         const offset = header ? header.offsetHeight : 0;
-        const top = target.getBoundingClientRect().top + window.pageYOffset - offset - 10;
 
-        window.scrollTo({ top, behavior: "smooth" });
+        window.scrollTo({
+            top: target.offsetTop - offset - 10,
+            behavior:'smooth'
+        });
     });
 });
 
 
 /* =====================================================
-   ACTIVE LINK ON SCROLL
-===================================================== */
-const sections = $$('section');
-const navLinks = $$('.nav-link');
-
-if (sections.length && navLinks.length) {
-    window.addEventListener('scroll', () => {
-        let current = "";
-
-        sections.forEach(sec => {
-            const top = sec.offsetTop - (header?.offsetHeight || 0) - 20;
-            if (window.scrollY >= top) current = sec.id;
-        });
-
-        navLinks.forEach(link => {
-            link.classList.toggle('active-link', link.getAttribute('href') === `#${current}`);
-        });
-    });
-}
-
-
-/* =====================================================
-   CONTACT FORM → WHATSAPP
-===================================================== */
-const form = $('.contact-form form');
-
-if (form) {
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const name = this.querySelector('input[type="text"]')?.value.trim();
-        const email = this.querySelector('input[type="email"]')?.value.trim();
-        const phone = this.querySelector('input[type="tel"]')?.value.trim();
-        const service = this.querySelector('select')?.value;
-        const message = this.querySelector('textarea')?.value.trim();
-
-        if (!name || !phone) {
-            alert("Please enter your Name and Phone number.");
-            return;
-        }
-
-        let text = `Hello, I am interested in solar services.%0A%0A`;
-        text += `Name: ${name}%0APhone: ${phone}%0A`;
-
-        if (email) text += `Email: ${email}%0A`;
-        if (service) text += `Service: ${service}%0A`;
-        if (message) text += `Message: ${message}`;
-
-        window.open(`https://wa.me/919931798080?text=${text}`, '_blank');
-        this.reset();
-    });
-}
-
-
-/* =====================================================
-   HEADER SCROLL EFFECT
-===================================================== */
-if (header) {
-    window.addEventListener('scroll', () => {
-        header.style.background =
-            window.scrollY > 100
-            ? 'rgba(255,255,255,0.98)'
-            : 'rgba(255,255,255,0.95)';
-    });
-}
-
-
-/* =====================================================
-   HERO SLIDER
-===================================================== */
-const slides = $$('.slide');
-const nextBtn = $('.next');
-const prevBtn = $('.prev');
-
-if (slides.length) {
-    let current = 0;
-
-    const showSlide = i => {
-        slides.forEach(s => s.classList.remove('active'));
-        slides[i].classList.add('active');
-    };
-
-    setInterval(() => {
-        current = (current + 1) % slides.length;
-        showSlide(current);
-    }, 3500);
-
-    if (nextBtn)
-        nextBtn.addEventListener('click', () => showSlide(current = (current + 1) % slides.length));
-
-    if (prevBtn)
-        prevBtn.addEventListener('click', () => showSlide(current = (current - 1 + slides.length) % slides.length));
-}
-
-
-/* =====================================================
-   SERVICE TABS
+   SERVICE TABS (SINGLE SYSTEM)
 ===================================================== */
 const tabs = $$('.service-tab');
 const panels = $$('.service-panel');
 
-if (tabs.length && panels.length) {
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
+function activateTab(tab){
+    tabs.forEach(t=>t.classList.remove('active'));
+    panels.forEach(p=>p.classList.remove('active'));
 
-            tabs.forEach(t => t.classList.remove('active'));
-            panels.forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
 
-            tab.classList.add('active');
+    const panel = $('#'+tab.dataset.target);
+    if(panel) panel.classList.add('active');
+}
 
-            const panel = document.getElementById(tab.dataset.target);
-            if (panel) panel.classList.add('active');
-        });
+if(tabs.length && panels.length){
+
+    tabs.forEach(tab=>{
+        tab.addEventListener('click', ()=>activateTab(tab));
+    });
+
+    /* ---- URL PARAM ACTIVATION ---- */
+    const params = new URLSearchParams(window.location.search);
+    const service = params.get("service");
+
+    if(service){
+        const targetTab = $(`.service-tab[data-target="${service}"]`);
+        if(targetTab) activateTab(targetTab);
+    }
+}
+
+
+/* =====================================================
+   CONTACT FORM MODAL
+===================================================== */
+const form = $('.contact-form form');
+const modal = $('#formSuccessModal');
+const emailBtn = $('#emailOption');
+const whatsappBtn = $('#whatsappOption');
+
+let formDataCache=null;
+
+if(form && modal){
+
+    form.addEventListener('submit', e=>{
+        e.preventDefault();
+
+        const name = form.querySelector('input[type="text"]').value.trim();
+        const email = form.querySelector('input[type="email"]').value.trim();
+        const phone = form.querySelector('input[type="tel"]').value.trim();
+        const service = form.querySelector('select').value;
+        const message = form.querySelector('textarea').value.trim();
+
+        if(!name || !phone){
+            alert("Please enter Name and Phone number");
+            return;
+        }
+
+        formDataCache={name,email,phone,service,message};
+        modal.classList.add('active');
+    });
+}
+
+
+/* ---- WHATSAPP ---- */
+if(whatsappBtn){
+    whatsappBtn.addEventListener('click', ()=>{
+        if(!formDataCache) return;
+
+        let text=`Hello, I am interested in solar services.%0A%0A`;
+        text+=`Name: ${formDataCache.name}%0A`;
+        text+=`Phone: ${formDataCache.phone}%0A`;
+        if(formDataCache.email) text+=`Email: ${formDataCache.email}%0A`;
+        if(formDataCache.service) text+=`Service: ${formDataCache.service}%0A`;
+        if(formDataCache.message) text+=`Message: ${formDataCache.message}`;
+
+        window.open(`https://wa.me/919931798080?text=${text}`,'_blank');
+        modal.classList.remove('active');
+        form?.reset();
+    });
+}
+
+
+/* ---- EMAIL ---- */
+if(emailBtn){
+    emailBtn.addEventListener('click', ()=>{
+        if(!formDataCache) return;
+
+        const subject=encodeURIComponent("Solar Service Inquiry");
+
+        let body=`Hello,
+I would like information about solar services.
+
+Name: ${formDataCache.name}
+Phone: ${formDataCache.phone}
+Email: ${formDataCache.email || '-'}
+Service: ${formDataCache.service || '-'}
+Message: ${formDataCache.message || '-'}`;
+
+        const encodedBody=encodeURIComponent(body);
+
+        const isMobile=/Android|iPhone|iPad/i.test(navigator.userAgent);
+
+        if(isMobile){
+            window.location.href=`mailto:smartsolartrp@gmail.com?subject=${subject}&body=${encodedBody}`;
+        }else{
+            window.open(`https://mail.google.com/mail/?view=cm&to=smartsolartrp@gmail.com&su=${subject}&body=${encodedBody}`,'_blank');
+        }
+
+        modal.classList.remove('active');
+        form?.reset();
+    });
+}
+
+
+/* =====================================================
+   RECOMMEND BUTTON
+===================================================== */
+const recommendBtn = $('#recommendBtn');
+if(recommendBtn){
+    recommendBtn.addEventListener('click', e=>{
+        e.preventDefault();
+
+        if(window.innerWidth>=992){
+            if(location.pathname.includes("index.html") || location.pathname==="/"){
+                $('#contact')?.scrollIntoView({behavior:'smooth'});
+            }else{
+                location.href="index.html#contact";
+            }
+        }else{
+            window.open("https://wa.me/9931798080?text=Hello%20I%20want%20more%20information",'_blank');
+        }
     });
 }
 
