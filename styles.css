@@ -2411,4 +2411,57 @@ body.menu-open {
 
 a:hover {
     transform: translateY(-3px);
+}.floating-whatsapp {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #25D366;
+    color: #fff;
+    height: 60px;
+    width: 60px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    transition: width .35s ease;
+    z-index: 9999;
+}
+
+.wa-icon {
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    transition: transform .3s ease;
+}
+
+.wa-text {
+    white-space: nowrap;
+    opacity: 0;
+    padding-right: 18px;
+    font-weight: 600;
+    transition: opacity .25s ease;
+}
+
+/* Hover Effect */
+.floating-whatsapp:hover {
+    width: 190px;
+}
+
+.floating-whatsapp:hover .wa-text {
+    opacity: 1;
+}
+
+.floating-whatsapp:hover .wa-icon {
+    transform: translateX(6px);
+}@media (max-width: 768px) {
+    .floating-whatsapp {
+        width: 60px !important;
+    }
+    .wa-text {
+        display: none;
+    }
 }
