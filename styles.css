@@ -1836,12 +1836,11 @@ body.menu-open {
 
 .gallery {
     padding: 60px 5%;
-    background: #f7f7f7;
 }
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 18px;
 }
 
@@ -1910,6 +1909,10 @@ body.menu-open {
 
 .gallery-item:hover::after {
     opacity: 1;
+}.gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 @media (min-width:1400px) {
@@ -2288,6 +2291,7 @@ body.menu-open {
     /* open state */
     .nav-menu.active {
         left: 0;
+        
     }
 
     /* links visibility fix */
@@ -2301,5 +2305,102 @@ body.menu-open {
     .whatsapp-nav {
         margin-top: auto;
         font-size: 28px;
+    }
+}.slideshow {
+    touch-action: pan-y; /* allow vertical scroll but detect horizontal swipe */
+    user-select: none;
+}@media (max-width:480px){
+    .gallery-grid{
+        
+        margin: 0 auto;   /* hard center */
+    }
+}/* ================= LIGHTBOX FIXED ================= */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lb-image {
+    max-width: 92%;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+/* Navigation Buttons */
+.lb-prev,
+.lb-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .25s ease;
+}
+
+.lb-prev:hover,
+.lb-next:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-50%) scale(1.05);
+}
+
+.lb-prev { left: 25px; }
+.lb-next { right: 25px; }
+
+/* Close Button */
+.lb-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    width: 42px;
+    height: 42px;
+    font-size: 20px;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .25s;
+}
+
+.lb-close:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+/* Mobile Adjustments */
+@media (max-width:768px) {
+    .lb-prev,
+    .lb-next {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .lb-close {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
     }
 }

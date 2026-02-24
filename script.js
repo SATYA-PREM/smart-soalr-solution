@@ -90,27 +90,104 @@ if(header){
 
 
 /* =====================================================
-   HERO SLIDER
+   HERO SLIDER WITH TOUCH SUPPORT
 ===================================================== */
-const slides = $$('.slide');
-const nextBtn = $('.next');
-const prevBtn = $('.prev');
 
-if(slides.length){
-    let current=0;
+const slides = document.querySelectorAll('.slide');
+const nextBtn = document.querySelector('.next');
+const prevBtn = document.querySelector('.prev');
+const slideshow = document.querySelector('.slideshow');
 
-    const showSlide=i=>{
-        slides.forEach(s=>s.classList.remove('active'));
-        slides[i].classList.add('active');
+if (slides.length) {
+
+    let current = 0;
+    let startX = 0;
+    let endX = 0;
+    let isDragging = false;
+
+    const showSlide = (index) => {
+        slides.forEach(s => s.classList.remove('active'));
+        slides[index].classList.add('active');
     };
 
-    setInterval(()=>{
-        current=(current+1)%slides.length;
+    const nextSlide = () => {
+        current = (current + 1) % slides.length;
         showSlide(current);
-    },3500);
+    };
 
-    nextBtn?.addEventListener('click', ()=>showSlide(current=(current+1)%slides.length));
-    prevBtn?.addEventListener('click', ()=>showSlide(current=(current-1+slides.length)%slides.length));
+    const prevSlide = () => {
+        current = (current - 1 + slides.length) % slides.length;
+        showSlide(current);
+    };
+
+    /* Auto Slide */
+    let autoSlide = setInterval(nextSlide, 1500);
+
+    /* Buttons */
+    nextBtn?.addEventListener('click', () => {
+        nextSlide();
+        resetAuto();
+    });
+
+    prevBtn?.addEventListener('click', () => {
+        prevSlide();
+        resetAuto();
+    });
+
+    function resetAuto(){
+        clearInterval(autoSlide);
+        autoSlide = setInterval(nextSlide, 3500);
+    }
+
+    /* ================= TOUCH EVENTS ================= */
+
+    slideshow.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    slideshow.addEventListener('touchmove', (e) => {
+        endX = e.touches[0].clientX;
+    });
+
+    slideshow.addEventListener('touchend', () => {
+        handleSwipe();
+    });
+
+    /* ================= MOUSE DRAG (Tablet/Desktop) ================= */
+
+    slideshow.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.clientX;
+    });
+
+    slideshow.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        endX = e.clientX;
+    });
+
+    slideshow.addEventListener('mouseup', () => {
+        if (isDragging) handleSwipe();
+        isDragging = false;
+    });
+
+    slideshow.addEventListener('mouseleave', () => {
+        isDragging = false;
+    });
+
+    /* ================= SWIPE LOGIC ================= */
+
+    function handleSwipe() {
+        const diff = startX - endX;
+
+        if (Math.abs(diff) > 50) {   // threshold
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+            resetAuto();
+        }
+    }
 }
 
 
@@ -233,6 +310,107 @@ recommendBtn?.addEventListener('click',e=>{
     }else{
         window.open("https://wa.me/9931798080?text=Hello%20I%20want%20more%20information",'_blank');
     }
+});/* ===============================
+   CLOSE MODAL FUNCTION
+================================= */
+function closeModal() {
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+    form.reset();
+    formData = null;
+}
+
+/* Close when clicking outside modal box */
+modal?.addEventListener("click", function (e) {
+    if (e.target === modal) {
+        closeModal();
+    }
 });
 
+/* Close on ESC key */
+document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+        closeModal();
+    }
+});
+
+});
+const galleryItems = document.querySelectorAll(".gallery-item");
+const images = document.querySelectorAll(".gallery-item img");
+
+const lightbox = document.getElementById("lightbox");
+const lbImage = document.querySelector(".lb-image");
+const lbClose = document.querySelector(".lb-close");
+const lbNext = document.querySelector(".lb-next");
+const lbPrev = document.querySelector(".lb-prev");
+
+let currentIndex = 0;
+let startX = 0;
+let endX = 0;
+
+/* OPEN LIGHTBOX */
+function openLightbox(index){
+    currentIndex = index;
+    lbImage.src = images[index].src;
+    lightbox.classList.add("active");
+    document.body.style.overflow = "hidden";
+}
+
+/* CLOSE */
+function closeLightbox(){
+    lightbox.classList.remove("active");
+    document.body.style.overflow = "auto";
+}
+
+/* SHOW IMAGE */
+function showImage(index){
+    currentIndex = (index + images.length) % images.length;
+    lbImage.src = images[currentIndex].src;
+}
+
+/* CLICK ANYWHERE ON GALLERY ITEM (INCLUDING VIEW OVERLAY) */
+galleryItems.forEach((item,index)=>{
+    item.addEventListener("click",()=>{
+        openLightbox(index);
+    });
+});
+
+/* BUTTON NAVIGATION */
+lbNext.addEventListener("click",()=>showImage(currentIndex+1));
+lbPrev.addEventListener("click",()=>showImage(currentIndex-1));
+lbClose.addEventListener("click",closeLightbox);
+
+/* CLICK OUTSIDE IMAGE TO CLOSE */
+lightbox.addEventListener("click",(e)=>{
+    if(e.target === lightbox) closeLightbox();
+});
+
+/* KEYBOARD NAV */
+document.addEventListener("keydown",(e)=>{
+    if(!lightbox.classList.contains("active")) return;
+
+    if(e.key === "Escape") closeLightbox();
+    if(e.key === "ArrowRight") showImage(currentIndex+1);
+    if(e.key === "ArrowLeft") showImage(currentIndex-1);
+});
+
+/* TOUCH SWIPE NAVIGATION */
+lightbox.addEventListener("touchstart",(e)=>{
+    startX = e.touches[0].clientX;
+});
+
+lightbox.addEventListener("touchmove",(e)=>{
+    endX = e.touches[0].clientX;
+});
+
+lightbox.addEventListener("touchend",()=>{
+    let diff = startX - endX;
+
+    if(Math.abs(diff) > 50){
+        if(diff > 0){
+            showImage(currentIndex+1);
+        } else {
+            showImage(currentIndex-1);
+        }
+    }
 });
