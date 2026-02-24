@@ -780,9 +780,6 @@ body.menu-open {
         gap: 1.5rem;
     }
 
-    .offer-card img {
-        height: 200px;
-    }
 
     .about {
         padding: 3.5rem 0;
@@ -867,9 +864,7 @@ body.menu-open {
         gap: 1.5rem;
     }
 
-    .offer-card img {
-        height: 180px;
-    }
+    
 
     .offer-content {
         padding: 1.2rem;
@@ -985,9 +980,7 @@ body.menu-open {
         gap: 1.2rem;
     }
 
-    .offer-card img {
-        height: 160px;
-    }
+    
 
     .offer-content {
         padding: 1rem;
@@ -1171,9 +1164,7 @@ body.menu-open {
         gap: 1rem;
     }
 
-    .offer-card img {
-        height: 140px;
-    }
+    
 
     .offer-content {
         padding: 0.8rem;
@@ -2001,9 +1992,7 @@ body.menu-open {
         font-size: .95rem;
     }
 
-    .offer-card img {
-        height: 200px;
-    }
+    
 
     .footer-content {
         grid-template-columns: repeat(2, 1fr);
