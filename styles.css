@@ -60,11 +60,12 @@ body.menu-open {
 }
 
 .logo1 {
-    height: 80px;
+    height: auto;
     /* adjusted size */
-    width: auto;
+    width: 100px;
     object-fit: contain;
 }
+
 
 .logo span {
     font-size: 1.3rem;
@@ -91,7 +92,11 @@ body.menu-open {
 .nav-link:hover {
     color: #f39c12;
 }
-
+@media (max-width: 768px) {
+    .logo1 {
+        width: 75px;
+    }
+}
 /* WhatsApp Button */
 .whatsapp-nav {
     width: 45px;
