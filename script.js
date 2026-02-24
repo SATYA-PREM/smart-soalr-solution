@@ -310,36 +310,42 @@ recommendBtn?.addEventListener('click',e=>{
     }else{
         window.open("https://wa.me/9931798080?text=Hello%20I%20want%20more%20information",'_blank');
     }
-});/* ===============================
-   CLOSE MODAL FUNCTION
+});
+});document.addEventListener("DOMContentLoaded", function () {
+
+/* =================================
+   MODAL CLOSE (FORM)
 ================================= */
+
+const modal = document.getElementById("formSuccessModal");
+const form = document.querySelector(".contact-form form");
+let formData = null;
+
 function closeModal() {
+    if (!modal) return;
     modal.classList.remove("active");
     document.body.style.overflow = "";
-    form.reset();
+    form?.reset();
     formData = null;
 }
 
-/* Close when clicking outside modal box */
 modal?.addEventListener("click", function (e) {
-    if (e.target === modal) {
-        closeModal();
-    }
+    if (e.target === modal) closeModal();
 });
 
-/* Close on ESC key */
 document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") {
-        closeModal();
-    }
+    if (e.key === "Escape") closeModal();
 });
 
-});
+
+/* =================================
+   GALLERY + LIGHTBOX (IMAGE + VIDEO)
+================================= */
+
 const galleryItems = document.querySelectorAll(".gallery-item");
-const images = document.querySelectorAll(".gallery-item img");
-
 const lightbox = document.getElementById("lightbox");
 const lbImage = document.querySelector(".lb-image");
+const lbVideo = document.querySelector(".lb-video");
 const lbClose = document.querySelector(".lb-close");
 const lbNext = document.querySelector(".lb-next");
 const lbPrev = document.querySelector(".lb-prev");
@@ -348,69 +354,198 @@ let currentIndex = 0;
 let startX = 0;
 let endX = 0;
 
+const mediaList = [];
+
+// Collect images and videos
+galleryItems.forEach(item => {
+    const img = item.querySelector("img");
+    const video = item.querySelector("video");
+
+    if (img) {
+        mediaList.push({ type: "image", src: img.src });
+    } else if (video) {
+        const source = video.querySelector("source");
+        mediaList.push({ type: "video", src: source.src });
+    }
+});
+
 /* OPEN LIGHTBOX */
-function openLightbox(index){
+function openLightbox(index) {
     currentIndex = index;
-    lbImage.src = images[index].src;
+    showMedia(index);
     lightbox.classList.add("active");
     document.body.style.overflow = "hidden";
 }
 
 /* CLOSE */
-function closeLightbox(){
+function closeLightbox() {
     lightbox.classList.remove("active");
     document.body.style.overflow = "auto";
+
+    // Stop video if playing
+    lbVideo.pause();
+    lbVideo.currentTime = 0;
 }
 
-/* SHOW IMAGE */
-function showImage(index){
-    currentIndex = (index + images.length) % images.length;
-    lbImage.src = images[currentIndex].src;
+/* SHOW IMAGE OR VIDEO */
+function showMedia(index) {
+    currentIndex = (index + mediaList.length) % mediaList.length;
+    const media = mediaList[currentIndex];
+
+    lbImage.style.display = "none";
+    lbVideo.style.display = "none";
+    lbVideo.pause();
+
+    if (media.type === "image") {
+        lbImage.src = media.src;
+        lbImage.style.display = "block";
+    } else {
+        lbVideo.src = media.src;
+        lbVideo.style.display = "block";
+        lbVideo.play();
+    }
 }
 
-/* CLICK ANYWHERE ON GALLERY ITEM (INCLUDING VIEW OVERLAY) */
-galleryItems.forEach((item,index)=>{
-    item.addEventListener("click",()=>{
+/* CLICK GALLERY ITEM */
+galleryItems.forEach((item, index) => {
+    item.addEventListener("click", () => {
         openLightbox(index);
     });
 });
 
-/* BUTTON NAVIGATION */
-lbNext.addEventListener("click",()=>showImage(currentIndex+1));
-lbPrev.addEventListener("click",()=>showImage(currentIndex-1));
-lbClose.addEventListener("click",closeLightbox);
+/* BUTTON NAV */
+lbNext?.addEventListener("click", () => showMedia(currentIndex + 1));
+lbPrev?.addEventListener("click", () => showMedia(currentIndex - 1));
+lbClose?.addEventListener("click", closeLightbox);
 
-/* CLICK OUTSIDE IMAGE TO CLOSE */
-lightbox.addEventListener("click",(e)=>{
-    if(e.target === lightbox) closeLightbox();
+/* CLICK OUTSIDE */
+lightbox?.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
 });
 
 /* KEYBOARD NAV */
-document.addEventListener("keydown",(e)=>{
-    if(!lightbox.classList.contains("active")) return;
+document.addEventListener("keydown", (e) => {
+    if (!lightbox.classList.contains("active")) return;
 
-    if(e.key === "Escape") closeLightbox();
-    if(e.key === "ArrowRight") showImage(currentIndex+1);
-    if(e.key === "ArrowLeft") showImage(currentIndex-1);
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowRight") showMedia(currentIndex + 1);
+    if (e.key === "ArrowLeft") showMedia(currentIndex - 1);
 });
 
-/* TOUCH SWIPE NAVIGATION */
-lightbox.addEventListener("touchstart",(e)=>{
+/* TOUCH SWIPE */
+lightbox?.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
 });
 
-lightbox.addEventListener("touchmove",(e)=>{
+lightbox?.addEventListener("touchmove", (e) => {
     endX = e.touches[0].clientX;
 });
 
-lightbox.addEventListener("touchend",()=>{
+lightbox?.addEventListener("touchend", () => {
     let diff = startX - endX;
 
-    if(Math.abs(diff) > 50){
-        if(diff > 0){
-            showImage(currentIndex+1);
-        } else {
-            showImage(currentIndex-1);
-        }
+    if (Math.abs(diff) > 50) {
+        if (diff > 0) showMedia(currentIndex + 1);
+        else showMedia(currentIndex - 1);
     }
+});
+
+
+/* =================================
+   LOAD MORE / HIDE
+================================= */
+
+const items = document.querySelectorAll(".gallery-item");
+const loadMoreBtn = document.getElementById("loadMoreBtn");
+const hideBtn = document.getElementById("hideBtn");
+
+const batchSize = 12;
+let visibleCount = batchSize;
+
+function updateGallery() {
+    items.forEach((item, index) => {
+        item.style.display = index < visibleCount ? "block" : "none";
+    });
+
+    hideBtn.style.display = visibleCount > batchSize ? "inline-block" : "none";
+    loadMoreBtn.style.display = visibleCount >= items.length ? "none" : "inline-block";
+}
+
+updateGallery();
+
+loadMoreBtn?.addEventListener("click", function () {
+    visibleCount += batchSize;
+    if (visibleCount > items.length) visibleCount = items.length;
+    updateGallery();
+});
+
+hideBtn?.addEventListener("click", function () {
+    visibleCount -= batchSize;
+    if (visibleCount < batchSize) visibleCount = batchSize;
+    updateGallery();
+
+    window.scrollTo({
+        top: document.getElementById("gallery").offsetTop - 100,
+        behavior: "smooth"
+    });
+});
+
+});
+
+
+
+
+
+
+const customerItems = document.querySelectorAll(".customer-card");
+const loadBtn = document.getElementById("customerLoadMore");
+const hideBtn = document.getElementById("customerHide");
+
+function getBatchSize() {
+    return window.innerWidth <= 768 ? 6 : 12;
+}
+
+let batchSize = getBatchSize();
+let visibleCount = batchSize;
+
+function updateCustomerGrid() {
+
+    customerItems.forEach((item, index) => {
+        item.style.display = index < visibleCount ? "flex" : "none";
+    });
+
+    hideBtn.style.display = visibleCount > batchSize ? "inline-block" : "none";
+    loadBtn.style.display = visibleCount >= customerItems.length ? "none" : "inline-block";
+}
+
+// Initial render
+updateCustomerGrid();
+
+// Show More
+loadBtn.addEventListener("click", function () {
+    visibleCount += batchSize;
+    if (visibleCount > customerItems.length) {
+        visibleCount = customerItems.length;
+    }
+    updateCustomerGrid();
+});
+
+// Hide
+hideBtn.addEventListener("click", function () {
+    visibleCount -= batchSize;
+    if (visibleCount < batchSize) {
+        visibleCount = batchSize;
+    }
+    updateCustomerGrid();
+
+    document.querySelector(".our-customers").scrollIntoView({
+        behavior: "smooth"
+    });
+});
+
+// Recalculate batch size on resize
+window.addEventListener("resize", function () {
+    batchSize = getBatchSize();
+    visibleCount = batchSize;
+    updateCustomerGrid();
 });
