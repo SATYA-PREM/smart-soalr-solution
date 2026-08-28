@@ -1,748 +1,416 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartSolar Solution - Your Green Energy Store</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Smart Solar Solutions</title>
+    <link rel="icon" href="logo smart.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <header class="header">
-        <nav class="navbar">
-            <div class="nav-container">
-
-                <div class="logo">
-                    <img class="logo1" src="logo smart.png" alt="Smart Solar Solutions Logo" href="index.html"
-                        style=" justify-content: center;">
-                    <span>Smart Solar Solutions</span>
-                </div>
-
-                <ul class="nav-menu">
-
-                    <li><a href="#" class="nav-link">Home</a></li>
-                    <li><a href="#about" class="nav-link">About Us</a></li>
-                    <li><a href="#offers" class="nav-link">Offers</a></li>
-                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                    <li>
-                        <a href="https://wa.me/919931798080?text=Hello!%20I%20need%20details." target="_blank" style="border-radius:50px;
-   transition:all .3s ease;
-   animation:pulseBtn 1.5s infinite;" class="whatsapp-nav">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </a>
-                    </li>
-                </ul>
-
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-
-            </div>
-        </nav>
+    <header class="navbar">
+        <div class="container nav-inner">
+            <a class="brand" href="index.html"><img src="logo smart.png" alt="Smart Solar Solutions"><strong>Smart Solar
+                    Solutions</strong></a>
+            <button class="menu" id="menuBtn" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+            <nav class="nav-links" id="navLinks"><a class="active" href="index.html">Home</a><a href="#about">About
+                    Us</a><a href="offer.html">Offers</a><a href="gallery.html">Gallery</a><a
+                    href="#contact">Contact</a><a class="wa" href="https://wa.me/919931798080" target="_blank"
+                    rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></nav>
+        </div>
     </header>
 
-
-    <section id="solar-hero" class="solar-hero">
-        <div class="hero-container">
-
-            <!-- LEFT: Content -->
-            <div class="hero-left">
-                <h1>Powering the Future with Smart Solar</h1>
-
-                <p>
-                    We design and install reliable solar solutions for homes,
-                    businesses, and industries. From battery-less systems to
-                    commercial plants, we help you reduce costs and gain
-                    energy independence.
-                </p>
-
-
-
-
-
-                <div class="hero-actions">
-                    <a href="offer.html" class="btn primary-btn">Explore Solutions</a>
-                    <a href="#contact" class="btn primary-btn" style="
-     background:#25D366;
-     color:white;
-     padding:12px 20px;
-     text-decoration:none;
-     font-weight:bold;
-     display:inline-flex;
-     align-items:center;
-     gap:8px;border-radius:50px;
-   transition:all .3s ease;
-   animation:pulseBtn 1.5s infinite;">
-                        <i class="fa-brands fa-whatsapp" style="font-size:22px;"></i>
-                        Contact Us
-                    </a>
-
-
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <div class="eyebrow">SMART ENERGY • SMART INVESTMENT</div>
+                    <h1>Power your future with <span>smart solar.</span></h1>
+                    <p>Reliable solar systems for homes, businesses, farms and industries — designed around your actual
+                        power needs, roof area and budget.</p>
+                    <div class="actions"><a class="btn btn-primary" href="#contact"><i
+                                class="fa-solid fa-solar-panel"></i> Contact Us</a><a class="btn btn-green"
+                            href="https://wa.me/919931798080?text=Hello%20I%20want%20a%20solar%20system%20recommendation."
+                            target="_blank"><i class="fa-brands fa-whatsapp"></i> Get Recommendation</a></div>
+                    <div class="hero-proof"><span><i class="fa-solid fa-circle-check"></i> Site-focused
+                            planning</span><span><i class="fa-solid fa-circle-check"></i> Residential &
+                            commercial</span></div>
                 </div>
-
-
-            </div>
-
-            <!-- RIGHT: Slideshow -->
-            <div class="hero-right">
-                <div class="slideshow">
-                    <button class="nav prev">&#10094;</button>
-                    <button class="nav next">&#10095;</button>
-                    <img src="ChatGPT Image Feb 10, 2026, 09_08_48 PM.png" class="slide active">
-                    <img src="ChatGPT Image Feb 10, 2026, 08_24_59 PM.png" class="slide">
-                    <img src="ChatGPT Image Feb 10, 2026, 09_05_18 PM.png" class="slide">
-                    <img src="ChatGPT Image Feb 10, 2026, 09_00_21 PM.png" class="slide">
-                    <img src="ChatGPT Image Feb 10, 2026, 09_13_34 PM.png" class="slide">
-                    <img src="ChatGPT Image Feb 10, 2026, 09_14_57 PM.png" class="slide">
-                    <img src="ChatGPT Image Feb 11, 2026, 12_12_02 PM.png" class="slide">
-                    <img src="ChatGPT Image Feb 10, 2026, 09_00_21 PM.png" class="slide">
-                    <img src="ChatGPT Image Feb 11, 2026, 12_23_15 PM.png" class="slide">
-                    <img src="ChatGPT Image Feb 11, 2026, 12_10_47 PM.png" class="slide">
-
+                <div class="hero-visual">
+                    <div class="hero-slider" id="heroSlider">
+                        <img class="hero-slide active" src="ChatGPT Image Feb 11, 2026, 12_23_15 PM.png"
+                            alt="Solar installation">
+                        <img class="hero-slide" src="ChatGPT Image Feb 11, 2026, 12_12_02 PM.png"
+                            alt="Solar installation">
+                        <img class="hero-slide" src="ChatGPT Image Feb 11, 2026, 12_10_47 PM.png"
+                            alt="Solar installation">
+                        <img class="hero-slide" src="ChatGPT Image Feb 10, 2026, 09_14_57 PM.png"
+                            alt="Solar installation">
+                        <img class="hero-slide" src="ChatGPT Image Feb 10, 2026, 09_13_34 PM.png"
+                            alt="Solar installation">
+                        <img class="hero-slide" src="ChatGPT Image Feb 10, 2026, 09_08_48 PM.png"
+                            alt="Solar installation">
+                        <img class="hero-slide" src="ChatGPT Image Feb 10, 2026, 09_05_18 PM.png"
+                            alt="Solar installation">
+                        <img class="hero-slide" src="ChatGPT Image Feb 10, 2026, 09_00_21 PM.png"
+                            alt="Solar installation">
+                        <img class="hero-slide" src="ChatGPT Image Feb 10, 2026, 08_24_59 PM.png"
+                            alt="Solar installation">
+                        <div class="hero-slider-overlay"></div>
+                        <div class="hero-slider-dots" id="heroDots"></div>
+                    </div>
+                    <div class="float-card fc1"><strong><i class="fa-solid fa-bolt"></i> Lower
+                            Bills</strong><small>Designed around your load</small></div>
+                    <div class="float-card fc2"><strong><i class="fa-solid fa-shield-halved"></i> Long-Term
+                            Support</strong><small>Installation + assistance</small></div>
+                    
                 </div>
             </div>
+        </section>
 
-        </div>
-    </section>
+        <section class="stats">
+            <div class="container stats-grid">
+                <div class="stat"><strong class="counter" data-target="150">0+</strong><span>Successful
+                        Installations</span></div>
+                <div class="stat"><strong>25+ Yr</strong><span>Panel Warranty*</span></div>
+                <div class="stat"><strong>24/7</strong><span>Solar Energy Potential</span></div>
+                <div class="stat"><strong>6+</strong><span>Solution Categories</span></div>
+            </div>
+        </section>
 
-
-    <!-- Offers -->
-    <section id="offers" class="offers">
-        <div class="container">
-            <h2>Our Solar Solutions</h2>
-
-            <div class="offers-grid">
-
-                <!-- Domestic Solar -->
-                <div class="offer-card">
-                    <a href="offer.html?service=domestic">
-                        <img src="ChatGPT Image Feb 12, 2026, 01_31_12 PM.png" alt="Domestic Solar Solution">
-                    </a>
-
-                    <div class="offer-content">
-                        <h3>Domestic Solar Solution</h3>
-                        <p>Complete home solar system including panels, inverter and battery backup for uninterrupted
-                            power.</p>
-
-
-
-                        <div class="offer-actions"
-                            style="margin-top:auto; width:100%; display:flex; justify-content:center;">
-
-                            <a href="offer.html?service=home" class="offer-btn" style="width:100%; text-align:center;">
-                                Get Details
-                            </a>
-
+        <section class="section reveal">
+            <div class="container">
+                <div class="eyebrow">SOLAR SOLUTIONS</div>
+                <h2 class="section-title">Choose the system that fits your life</h2>
+                <p class="section-sub">Compare residential, commercial and agricultural options before requesting a
+                    recommendation.</p>
+                <div class="offer-grid">
+                    <article class="offer">
+                        <div class="offer-media"><img src="ChatGPT Image Feb 12, 2026, 01_31_12 PM.png"
+                                alt="Domestic solar"><span class="offer-tag">HOME</span></div>
+                        <div class="offer-body">
+                            <h3>Domestic Solar</h3>
+                            <p>1kW to 5kW systems for everyday home loads, with on-grid and hybrid configurations.</p><a
+                                class="mini-link" href="offer.html?service=home">View home systems <i
+                                    class="fa-solid fa-arrow-right"></i></a>
                         </div>
+                    </article>
+                    <article class="offer">
+                        <div class="offer-media"><img src="ChatGPT Image Feb 13, 2026, 11_33_56 PM.png"
+                                alt="Commercial solar"><span class="offer-tag">BUSINESS</span></div>
+                        <div class="offer-body">
+                            <h3>Commercial Solar</h3>
+                            <p>5kW to 50kW+ solutions for shops, schools, petrol pumps, offices and industries.</p><a
+                                class="mini-link" href="offer.html?service=business">View business systems <i
+                                    class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                    <article class="offer">
+                        <div class="offer-media"><img src="ChatGPT Image Feb 11, 2026, 12_12_02 PM.png"
+                                alt="Solar pump"><span class="offer-tag">AGRICULTURE</span></div>
+                        <div class="offer-body">
+                            <h3>Solar Pumps</h3>
+                            <p>1HP to 5HP agricultural pumping systems for irrigation and water supply.</p><a
+                                class="mini-link" href="offer.html?service=pump">View pump systems <i
+                                    class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+                <div class="center-action"><a class="btn btn-primary" href="offer.html">See All Solar Offers</a></div>
+            </div>
+        </section>
+
+        <section class="section about" id="about">
+            <div class="container about-grid reveal"><img class="about-img"
+                    src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1200&q=85"
+                    alt="Solar panels" loading="lazy">
+                <div class="about-copy">
+                    <div class="eyebrow left">ABOUT SMART SOLAR</div>
+                    <h2>Solar planning, not just solar selling.</h2>
+                    <p>Smart Solar Solutions provides solar panels, batteries, inverters and complete installation
+                        support for residential and commercial customers.</p>
+                    <div class="checks"><span><i class="fa-solid fa-circle-check"></i> Professional
+                            installation</span><span><i class="fa-solid fa-circle-check"></i> System-size
+                            guidance</span><span><i class="fa-solid fa-circle-check"></i> Battery & inverter
+                            options</span><span><i class="fa-solid fa-circle-check"></i> Subsidy
+                            assistance</span><span><i class="fa-solid fa-circle-check"></i> Maintenance
+                            support</span><span><i class="fa-solid fa-circle-check"></i> Residential & industrial</span>
+                    </div>
+                    <a class="btn btn-green" href="offer.html">Explore our solutions</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section reveal">
+            <div class="container">
+                <div class="eyebrow">HOW IT WORKS</div>
+                <h2 class="section-title">From requirement to installation</h2>
+                <p class="section-sub">A simple process built around your load, site and application.</p>
+                <div class="process-grid">
+                    <div class="process"><b class="num">01</b>
+                        <h3>Tell us your load</h3>
+                        <p>Share appliances, working hours, electricity usage or business requirements.</p>
+                    </div>
+                    <div class="process"><b class="num">02</b>
+                        <h3>System planning</h3>
+                        <p>We identify a suitable capacity and configuration for your application.</p>
+                    </div>
+                    <div class="process"><b class="num">03</b>
+                        <h3>Installation</h3>
+                        <p>Panels, inverter, wiring and related equipment are installed and tested.</p>
+                    </div>
+                    <div class="process"><b class="num">04</b>
+                        <h3>Support</h3>
+                        <p>Get guidance for operation, maintenance and future system needs.</p>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Commercial Solar -->
-                <div class="offer-card">
-                    <a href="offer.html?service=home">
-                        <img src="ChatGPT Image Feb 13, 2026, 11_33_56 PM.png" alt="Domestic Solar Solution">
-                    </a>
+        <section class="section gallery-preview" id="gallery">
 
-                    <div class="offer-content" style="display:flex; flex-direction:column; height:100%;">
+            <div class="container reveal">
 
-                        <h3>Complete Solar Installation Services</h3>
+                <div class="section-heading-row">
 
-                        <p>
-                            We provide solar installation for all types of applications including
-                            homes, petrol pumps, government offices, street lighting, battery backup,
-                            water pumps, shops, factories, atta chakki, rice mills and industrial systems.
-                        </p>
-
-                        <div class="offer-actions"
-                            style="margin-top:auto; width:100%; display:flex; justify-content:center;">
-
-                            <a href="offer.html?service=home" class="offer-btn" style="width:100%; text-align:center;">
-                                Get Details
-                            </a>
-
+                    <div>
+                        <div class="eyebrow left">
+                            PROJECT GALLERY
                         </div>
 
+                        <h2 class="section-title left-title">
+                            See the work
+                        </h2>
                     </div>
-                </div>
-                <!-- Commercial Solar -->
-                <div class="offer-card">
-                    <a href="offer.html?service=business">
-                        <img src="ChatGPT Image Feb 12, 2026, 01_31_12 PM.png" alt="Domestic Solar Solution">
-                    </a>
 
-                    <div class="offer-content">
-                        <h3>Commercial Solar Package</h3>
-                        <p>Ideal for schools, petrol pumps, rice mills, factories, showrooms and industrial setups.</p>
-
-
-
-                        <div class="offer-actions"
-                            style="margin-top:auto; width:100%; display:flex; justify-content:center;">
-
-                            <a href="offer.html?service=home" class="offer-btn" style="width:100%; text-align:center;">
-                                Get Details
-                            </a>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-            </div>
-        </div>
-    </section>
-    <section class="gallery" id="gallery">
-        <h2 style="text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 3rem;
-    color: #2c3e50;">Gallery</h2>
-
-        <div class="gallery-grid">
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.35.35.jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.35.36.jpeg" alt="">
-            </div>
-            <div class="gallery-item video-item">
-
-                <video class="gallery-video">
-                    <source src="WhatsApp Video 2026-02-24 at 22.44.17.mp4" type="video/mp4">
-                </video>
-
-                <div class="video-overlay">
-                    <i class="fa-solid fa-play"></i>
-                </div>
-
-            </div>
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.35.37 (1).jpeg" alt="">
-            </div>
-
-
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.35.38 (1).jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.35.38 (2).jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.35.38.jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.35.41 (1).jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.35.41 (2).jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.35.41.jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.35.42 (1).jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.35.42.jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.35.43 (1).jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.35.43.jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.35.44.jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.35.46 (1).jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.35.46 (2).jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.35.46.jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.36.54.jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.44.06.jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.44.07.jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.44.08.jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.44.09.jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.54.27.jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.54.35.jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 22.58.29.jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 23.01.12.jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 23.01.24.jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 23.02.51.jpeg" alt="">
-            </div>
-
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-02-24 at 23.03.52.jpeg" alt="">
-            </div>
-            <div class="gallery-load-controls">
-                <button id="loadMoreBtn">Show More</button>
-                <button id="hideBtn" style="display:none;">Hide</button>
-            </div>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 style="text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 3rem;
-    color: #2c3e50;">About Us</h2>
-            <div class="about-content">
-                <div class="about-text">
-
-                    <div class="logo">
-                        <img class="logo1" src="logo smart.png" alt="Smart Solar Solutions Logo" href="index.html"
-                            style=" justify-content: center;">
-                    </div>
-                    <h2>Smart Solar Solution</h2>
-                    <p>SmartSolar Solution provides premium solar panels, batteries, and inverters with expert
-                        installation and support, helping homes and businesses switch to clean energy with confidence.
+                    <p>
+                        Explore our solar installations, electrical systems,
+                        commercial projects and field work through our project gallery.
                     </p>
-                    <div class="features">
-                        <div class="feature"><i class="fas fa-check-circle"></i><span>25+ Years Panel Warranty</span>
+
+                </div>
+
+
+                <!-- PREVIEW GRID -->
+
+                <div class="gallery-grid preview-grid">
+
+                    <!-- FEATURED -->
+
+                    <a class="gallery-item gallery-large" href="gallery.html">
+
+                        <img src="gallary/WhatsApp Image 2026-02-24 at 22.35.35.jpeg" alt="Solar installation project"
+                            loading="lazy">
+
+                        <div class="gallery-overlay">
+
+                            <span>
+                                View Project
+                            </span>
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
                         </div>
-                        <div class="feature"><i class="fas fa-check-circle"></i><span>Professional Installation
-                                Service</span></div>
-                        <div class="feature"><i class="fas fa-check-circle"></i><span>Full Customer Support</span></div>
-                        <div class="feature"><i class="fas fa-check-circle"></i><span>Government Subsidy
-                                Assistance</span></div>
-                        <div>
-                            <h3>Address</h3>
-                            <p>Smart Solar Solutions Near State Bank of India
-                                <br>Tarapur (813221) Munger, Bihar, India
-                                <br>+91 9931798080, +91 7049798080
-                            </p>
-                        </div>
+
+                    </a>
 
 
-                    </div>
-                </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-                        alt="Solar Installation Team">
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="our-customers">
+                    <!-- PROJECT 2 -->
 
-        <div class="container">
+                    <a class="gallery-item" href="gallery.html">
 
-            <h2 class="section-title">Our Valuable Customers</h2>
-            <p class="section-subtitle">
-                Trusted by schools, petrol pumps, retail shops, clinics and industries across Bihar.
-            </p>
+                        <img src="gallary/WhatsApp Image 2026-02-24 at 22.35.36.jpeg" alt="Solar project installation"
+                            loading="lazy">
 
-            <div class="customer-grid">
+                    </a>
 
-                <!-- With Image -->
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="paramount.jpg" alt="Paramount Academy">
-                    </div>
-                    <div class="customer-name">Paramount Academy, Tarapur</div>
-                </div>
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="hebron.jpg" alt="Paramount Academy">
-                    </div>
-                    <div class="customer-name">Hebron Mission School</div>
-                </div>
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="st. mary.jpg" alt="St Mary's English School">
-                    </div>
-                    <div class="customer-name">St Mary's English School, sangrampur</div>
-                </div>
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="Screenshot 2026-02-24 233020.png" alt="St Mary's English School">
-                    </div>
-                    <div class="customer-name">St Teresa Seminary School, Kharagpur</div>
-                </div>
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="Screenshot 2026-02-24 233104.png" alt="St Mary's English School">
-                    </div>
-                    <div class="customer-name">Holy Mission Public SChool</div>
-                </div>
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="Screenshot 2026-02-24 233139.png" alt="St Mary's English School">
-                    </div>
-                    <div class="customer-name">Surentra ITI</div>
-                </div>
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="Screenshot 2026-02-24 233158.png" alt="St Mary's English School">
-                    </div>
-                    <div class="customer-name">NNM Public School</div>
-                </div>
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="Screenshot 2026-02-24 233215.png" alt="St Mary's English School">
-                    </div>
-                    <div class="customer-name">32 Pearls Oro Dental Clinic, Bhagalpurl</div>
-                </div>
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="Screenshot 2026-02-24 233231.png" alt="St Mary's English School">
-                    </div>
-                    <div class="customer-name">Arya Mission Global SChool</div>
-                </div>
-                <!-- Without Image (auto initials fallback) -->
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="" alt="Shree Ram Fuels">
-                    </div>
-                    <div class="customer-name">Shree Ram Fuels – Bhitiya, Banka</div>
-                </div>
 
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="" alt="Smart Readymade">
-                    </div>
-                    <div class="customer-name">Smart Readymade – Surajgarha</div>
-                </div>
+                    <!-- PROJECT 3 -->
 
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="" alt="Maa Shyama Jaanch Ghar">
-                    </div>
-                    <div class="customer-name">Maa Shyama Jaanch Ghar – Tarapur</div>
-                </div>
+                    <a class="gallery-item" href="gallery.html">
 
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="" alt="Maa Tara Petrol Pump">
-                    </div>
-                    <div class="customer-name">Maa Tara Petrol Pump – Tarapur</div>
-                </div>
+                        <img src="gallary/WhatsApp Image 2026-02-24 at 22.35.37.jpeg" alt="Solar panel installation"
+                            loading="lazy">
 
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="" alt="R.K Sound">
-                    </div>
-                    <div class="customer-name">R.K Sound – Bhima</div>
-                </div>
+                    </a>
 
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="" alt="Sai Petrol Pump">
-                    </div>
-                    <div class="customer-name">Sai Petrol Pump – Chargawan</div>
-                </div>
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="" alt="Dr. Bashuki Prasad Arogya Sadan">
-                    </div>
-                    <div class="customer-name">Dr. Bashuki Prasad Arogya Sadan – Tarapur</div>
+
+                    <!-- PROJECT 4 -->
+
+                    <a class="gallery-item" href="gallery.html">
+
+                        <img src="gallary/WhatsApp Image 2026-02-24 at 22.35.37 (1).jpeg"
+                            alt="Solar energy installation" loading="lazy">
+
+                    </a>
+
+
+                    <!-- PROJECT 5 -->
+
+                    <a class="gallery-item" href="gallery.html">
+
+                        <img src="gallary/WhatsApp Image 2026-02-24 at 22.35.38.jpeg" alt="Solar installation work"
+                            loading="lazy">
+
+                    </a>
+
+
+                    <!-- PROJECT 6 -->
+
+                    <a class="gallery-item" href="gallery.html">
+
+                        <img src="gallary/WhatsApp Image 2026-02-24 at 22.35.38 (1).jpeg" alt="Solar project"
+                            loading="lazy">
+
+                    </a>
+
                 </div>
 
 
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="" alt="New Style Readymade">
-                    </div>
-                    <div class="customer-name">New Style Readymade – Sultanganj</div>
-                </div>
+                <!-- VIEW MORE -->
 
+                <div class="center-action">
 
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="" alt="Subh Mangal Jewellers">
-                    </div>
-                    <div class="customer-name">Subh Mangal Jewellers – Tarapur</div>
-                </div>
+                    <a class="btn btn-primary" href="gallery.html">
 
+                        View Full Gallery
 
+                        <i class="fa-solid fa-arrow-right"></i>
 
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="" alt="Vardhaman Fuels">
-                    </div>
-                    <div class="customer-name">Vardhaman Fuels – Mandla</div>
-                </div>
+                    </a>
 
-                <div class="customer-card">
-                    <div class="customer-logo">
-                        <img src="" alt="Naresh Garments">
-                    </div>
-                    <div class="customer-name">Naresh Garments</div>
                 </div>
 
             </div>
-            <div class="customer-actions">
-                <button id="customerLoadMore" class="btn-load">Show More</button>
-                <button id="customerHide" class="btn-hide">Hide</button>
-                <div class="installation-highlight">
-                    <h3><span class="counter">150</span>+ Successful Installations Completed</h3>
-                </div>
 
+        </section>
+
+        <section class="section customers">
+            <div class="container reveal">
+                <div class="eyebrow">TRUSTED BY</div>
+                <h2 class="section-title">Our valuable customers</h2>
+                <p class="section-sub">Trusted by schools, businesses, clinics and other organizations across the
+                    region.</p>
+                <div class="customer-grid">
+                    <div class="customer"><img src="paramount.jpg" alt="Paramount Academy" loading="lazy"><b>Paramount
+                            Academy, Tarapur</b></div>
+                    <div class="customer"><img src="hebron.jpg" alt="Hebron Mission School" loading="lazy"><b>Hebron
+                            Mission School</b></div>
+                    <div class="customer"><img src="st. mary.jpg" alt="St Mary's English School" loading="lazy"><b>St
+                            Mary's English School</b></div>
+                    <div class="customer"><img src="Screenshot 2026-02-24 233020.png" alt="St Teresa Seminary School"
+                            loading="lazy"><b>St Teresa Seminary School</b></div>
+                    <div class="customer"><img src="Screenshot 2026-02-24 233104.png" alt="Holy Mission Public School"
+                            loading="lazy"><b>Holy Mission Public School</b></div>
+                    <div class="customer"><img src="Screenshot 2026-02-24 233139.png" alt="Surentra ITI"
+                            loading="lazy"><b>Surentra ITI</b></div>
+                    <div class="customer"><img src="Screenshot 2026-02-24 233158.png" alt="NNM Public School"
+                            loading="lazy"><b>NNM Public School</b></div>
+                    <div class="customer"><img src="Screenshot 2026-02-24 233215.png" alt="32 Pearls Oro Dental Clinic"
+                            loading="lazy"><b>32 Pearls Oro Dental Clinic</b></div>
+                    <div class="customer"><img src="Screenshot 2026-02-24 233231.png" alt="Arya Mission Global School"
+                            loading="lazy"><b>Arya Mission Global School</b></div>
+                    <div class="customer"><b>Shree Ram Fuels – Bhitiya</b></div>
+                </div>
             </div>
-        </div>
+        </section>
 
-    </section>
-    <!-- Contact -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 style="text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 3rem;
-    color: #2c3e50;">Contact Us</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h3>Address</h3>
-                            <p>Smart Solar Solutions
-                                Near State Bank of India
-                                <br>Tarapur (813221) Munger, Bihar, India
-                            </p>
-                        </div>
+        <section class="section contact" id="contact">
+            <div class="container contact-grid reveal">
+                <div class="contact-card">
+                    <div class="eyebrow left">CONTACT</div>
+                    <h3>Let's plan your solar system</h3>
+                    <div class="contact-row"><i class="fa-solid fa-location-dot"></i>
+                        <div><strong>Visit us</strong><span>Near State Bank of India, Tarapur (813221), Munger,
+                                Bihar</span></div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h3>Phone</h3>
-                            <p>+91 9931798080, +91 7049798080</p>
-                        </div>
+                    <div class="contact-row"><i class="fa-solid fa-phone"></i>
+                        <div><strong>Call</strong><span>+91 9931798080 · +91 7049798080</span></div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h3>Email</h3>
-                            <p>smartsolartrp@gmail.com</p>
-                        </div>
+                    <div class="contact-row"><i class="fa-solid fa-envelope"></i>
+                        <div><strong>Email</strong><span>smartsolartrp@gmail.com</span></div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <h3>Working Hours</h3>
-                            <p>Mon - Sat: 10:00 AM - 7:00 PM</p>
-                        </div>
+                    <div class="contact-row"><i class="fa-solid fa-clock"></i>
+                        <div><strong>Working hours</strong><span>Mon – Sat: 10:00 AM – 7:00 PM</span></div>
                     </div>
-                    <div class="contact-map">
-                        <h3>Our Location</h3>
-
-                        <iframe
-                            src="https://www.google.com/maps?q=Smart+Solar+Solutions+Tarapur+Munger+Bihar&output=embed"
-                            width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy">
-                        </iframe>
-                    </div>
-
+                    <iframe title="Smart Solar Solutions location"
+                        src="https://www.google.com/maps?q=Smart+Solar+Solutions+Tarapur+Munger+Bihar&output=embed"
+                        loading="lazy"></iframe>
                 </div>
-                <div class="contact-form">
-                    <h2 style="text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 3rem;
-    color: #2c3e50;">Contact Us</h2>
-                    <form>
-                        <div class="form-group"><input type="text" placeholder="Your Name" required></div>
-                        <div class="form-group"><input type="email" placeholder="Your Email"></div>
-                        <div class="form-group"><input type="tel" placeholder="Phone Number" required></div>
-                        <div class="form-group">
-                            <select>
-                                <option value="">Select Service</option>
-                                <option value="solar-panels">Solar Panels</option>
-                                <option value="batteries">Battery Storage</option>
-                                <option value="inverters">Inverters</option>
-                                <option value="complete-system">Complete Solar System</option>
-                            </select>
-                        </div>
-                        <div class="form-group"><textarea placeholder="Your Message" rows="5"></textarea></div>
-                        <div class="form-buttons">
-                            <button type="submit" class="submit-btn">Send Message</button>
-
-                            <a href="https://wa.me/919931798080?text=Hello!%20I%20need%20details." target="_blank"
-                                class="whatsapp-btn">
-                                <i class="fa-brands fa-whatsapp"></i>
-                                Contact Us
-                            </a>
-                        </div>
+                <div class="form-card">
+                    <h3>Request a recommendation</h3>
+                    <form id="leadForm">
+                        <div class="form-grid"><label>Name<input id="name" required
+                                    placeholder="Your name"></label><label>Phone<input id="phone" required
+                                    placeholder="+91"></label><label>Application<select id="service">
+                                    <option>Home Solar</option>
+                                    <option>Commercial Solar</option>
+                                    <option>Solar Pump</option>
+                                    <option>Battery Backup</option>
+                                    <option>Solar Without Battery</option>
+                                    <option>Atta Chakki / Rice Mill</option>
+                                </select></label><label>Approx. requirement<input id="load"
+                                    placeholder="e.g. 3kW / 5HP"></label><label class="full">Message<textarea
+                                    id="message" rows="5"
+                                    placeholder="Tell us about your electricity usage or equipment"></textarea></label><button
+                                class="btn btn-primary full" type="submit">Send on WhatsApp <i
+                                    class="fa-brands fa-whatsapp"></i></button></div>
                     </form>
-                    <div id="formSuccessModal" class="form-modal">
-                        <div class="modal-box">
-                            <h2>Thank you!</h2>
-                            <p>Your details are ready to send. Choose how you want to contact us.</p>
-
-                            <div class="modal-actions">
-                                <a id="emailOption" class="modal-btn email-btn">
-                                    <i class="fa-solid fa-envelope"></i> Email Us
-                                </a>
-
-                                <a id="whatsappOption" class="modal-btn whatsapp-btn">
-                                    <i class="fa-brands fa-whatsapp"></i> Contact on WhatsApp
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand"><img src="logo smart.png" alt="Smart Solar Solutions logo">
+                <h3>Smart Solar Solutions</h3>
+                <p>Reliable solar energy solutions for residential, agricultural, commercial and industrial customers.
+                </p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="offer.html">Offers</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <ul>
+                    <li>Solar Panel Installation</li>
+                    <li>Battery Storage</li>
+                    <li>Inverter Solutions</li>
+                    <li>Solar Pumps</li>
+                    <li>Maintenance & Support</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li>+91 9931798080</li>
+                    <li>+91 7049798080</li>
+                    <li>smartsolartrp@gmail.com</li>
+                    <li>Tarapur, Munger, Bihar</li>
+                </ul>
             </div>
         </div>
-    </section>
-
-
-
-
-    <div id="lightbox" class="lightbox">
-        <button class="lb-close">×</button>
-        <button class="lb-prev">❮</button>
-        <button class="lb-next">❯</button>
-
-        <img class="lb-image" />
-        <video class="lb-video" controls style="display:none;"></video>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="logo">
-                        <img class="logo1" src="logo smart.png" alt="Smart Solar Solutions Logo" style="width: 100px; height: auto; justify-content: center;display: flex;
-    justify-content: center;  /* horizontal center */
-    align-items: center;  ">
-
-                    </div>
-                    <h2 class="logo">Smart Solar Solutions</h2>
-                    <p>Leading provider of solar energy solutions for residential and commercial customers.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#offers">Offers</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Services</h3>
-                    <ul>
-                        <li>Solar Panel Installation</li>
-                        <li>Battery Storage Systems</li>
-                        <li>Inverter Solutions</li>
-                        <li>Maintenance & Support</li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Follow Us</h3>
-                    <div class="social-links" style="align-content:center;justify-content:center">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a><a
-                            href="https://wa.me/9931798080?text=Hello%20I%20want%20more%20information" target="_blank"
-                            style="
-   background:#25D366;
-   color:white;
-   text-decoration:none;
-   font-weight:bold;
-   display:inline-flex;
-   align-items:center;
-   justify-content:center;border-radius:50px;
-   transition:all .3s ease;
-   animation:pulseBtn 1.5s infinite;
- ">
-
-                            <i class="fa-brands fa-whatsapp" style="font-size:22px;"></i>
-                        </a>
-                    </div><div class="contact-map-F">
-                        <h3>Our Location</h3>
-
-                        <iframe
-                            src="https://www.google.com/maps?q=Smart+Solar+Solutions+Tarapur+Munger+Bihar&output=embed"
-                            width="100%" height="100px" style="border:0;" allowfullscreen="" loading="lazy">
-                        </iframe>
-                    </div>
-
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 SmartSolar Solution. All rights reserved.</p>
-            </div>
-        </div>
+        <div class="container copyright">© 2025 Smart Solar Solutions. All rights reserved.</div>
     </footer>
-    <a href="https://wa.me/919931798080?text=Hello!%20I%20need%20details." target="_blank" class="floating-whatsapp">
-
-        <span class="wa-icon">
-            <i class="fa-brands fa-whatsapp"></i>
-        </span>
-
-        <span class="wa-text">Contact Us</span>
-
-    </a>
-    <script src="script.js"></script>
-
+    <a class="float-wa" href="https://wa.me/919931798080" target="_blank" rel="noopener" aria-label="WhatsApp"><i
+            class="fa-brands fa-whatsapp"></i></a>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
