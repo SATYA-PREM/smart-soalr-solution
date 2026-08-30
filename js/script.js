@@ -1,1226 +1,510 @@
+/**
+ * SMART SOLAR SOLUTIONS - JAVASCRIPT ENGINE
+ * Full Interactivity: Theme Engine, Calculator, Slider, Gallery, Tabs, Accordions, Lightbox
+ */
+
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =========================================
-       MOBILE NAVIGATION
-    ========================================= */
+    /* =========================================================
+       1. THEME SWITCHER ENGINE (DUAL THEME WITH LOCALSTORAGE)
+       ========================================================= */
+    const themeBtn = document.getElementById("themeToggleBtn");
+    
+    // Default to dark luxury theme if not set
+    const currentTheme = localStorage.getItem("theme") || "dark";
+    document.documentElement.setAttribute("data-theme", currentTheme);
+    
+    if (themeBtn) {
+        const icon = themeBtn.querySelector("i");
+        if (icon) {
+            icon.className = currentTheme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
+        }
 
-    const menu = document.getElementById("menuBtn");
-    const nav = document.getElementById("navLinks");
-
-    if (menu && nav) {
-
-        menu.addEventListener("click", () => {
-
-            const isOpen = nav.classList.toggle("open");
-
-            menu.setAttribute(
-                "aria-expanded",
-                String(isOpen)
-            );
-
-            document.body.classList.toggle(
-                "menu-open",
-                isOpen
-            );
-
+        themeBtn.addEventListener("click", () => {
+            const activeTheme = document.documentElement.getAttribute("data-theme") || "dark";
+            const newTheme = activeTheme === "dark" ? "light" : "dark";
+            
+            document.documentElement.setAttribute("data-theme", newTheme);
+            localStorage.setItem("theme", newTheme);
+            
+            if (icon) {
+                icon.className = newTheme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
+            }
         });
-
-        nav.querySelectorAll("a").forEach(link => {
-
-            link.addEventListener("click", () => {
-
-                nav.classList.remove("open");
-
-                menu.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-                document.body.classList.remove(
-                    "menu-open"
-                );
-
-            });
-
-        });
-
     }
 
+    /* =========================================================
+       2. MOBILE NAVIGATION DRAWER
+       ========================================================= */
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
 
-    /* =========================================
-       HERO IMAGE SLIDER
-    ========================================= */
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("open");
+            menuBtn.setAttribute("aria-expanded", String(isOpen));
+            document.body.classList.toggle("menu-open", isOpen);
+        });
 
-    const slides = [
-        ...document.querySelectorAll(".hero-slide")
-    ];
+        // Close when clicking any nav link
+        navLinks.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("open");
+                menuBtn.setAttribute("aria-expanded", "false");
+                document.body.classList.remove("menu-open");
+            });
+        });
 
-    const dotsBox =
-        document.getElementById("heroDots");
+        // Close on click outside
+        document.addEventListener("click", (e) => {
+            if (navLinks.classList.contains("open") && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+                navLinks.classList.remove("open");
+                menuBtn.setAttribute("aria-expanded", "false");
+                document.body.classList.remove("menu-open");
+            }
+        });
+    }
+
+    /* =========================================================
+       3. HERO VISUAL IMAGE SLIDER
+       ========================================================= */
+    const slides = [...document.querySelectorAll(".hero-slide")];
+    const dotsBox = document.getElementById("heroDots");
 
     if (slides.length && dotsBox) {
-
-        let current = 0;
-        let timer;
+        let currentSlide = 0;
+        let slideTimer;
 
         dotsBox.innerHTML = "";
-
         slides.forEach((_, index) => {
-
-            const dot =
-                document.createElement("button");
-
+            const dot = document.createElement("button");
             dot.type = "button";
-
-            dot.setAttribute(
-                "aria-label",
-                `Show hero image ${index + 1}`
-            );
-
-            dot.className =
-                index === 0 ? "active" : "";
-
+            dot.setAttribute("aria-label", `Slide ${index + 1}`);
+            dot.className = index === 0 ? "active" : "";
             dot.addEventListener("click", () => {
-
-                current = index;
-
-                showSlide();
-
-                restartSlider();
-
+                currentSlide = index;
+                renderSlide();
+                resetSlideTimer();
             });
-
             dotsBox.appendChild(dot);
-
         });
 
+        const dots = [...dotsBox.querySelectorAll("button")];
 
-        const dots = [
-            ...dotsBox.querySelectorAll("button")
-        ];
-
-
-        function showSlide() {
-
-            slides.forEach((slide, index) => {
-
-                slide.classList.toggle(
-                    "active",
-                    index === current
-                );
-
+        function renderSlide() {
+            slides.forEach((slide, idx) => {
+                slide.classList.toggle("active", idx === currentSlide);
             });
-
-            dots.forEach((dot, index) => {
-
-                dot.classList.toggle(
-                    "active",
-                    index === current
-                );
-
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle("active", idx === currentSlide);
             });
-
         }
-
 
         function nextSlide() {
-
-            current =
-                (current + 1) % slides.length;
-
-            showSlide();
-
+            currentSlide = (currentSlide + 1) % slides.length;
+            renderSlide();
         }
 
-
-        function restartSlider() {
-
-            clearInterval(timer);
-
-            timer =
-                setInterval(nextSlide, 4500);
-
+        function resetSlideTimer() {
+            clearInterval(slideTimer);
+            slideTimer = setInterval(nextSlide, 4500);
         }
 
-
-        showSlide();
-
-        restartSlider();
-
+        renderSlide();
+        resetSlideTimer();
     }
 
-
-    /* =========================================
-       SCROLL REVEAL
-    ========================================= */
-
-    const revealElements =
-        document.querySelectorAll(".reveal");
-
-    if (
-        revealElements.length &&
-        "IntersectionObserver" in window
-    ) {
-
-        const revealObserver =
-            new IntersectionObserver(
-                entries => {
-
-                    entries.forEach(entry => {
-
-                        if (entry.isIntersecting) {
-
-                            entry.target.classList.add(
-                                "show"
-                            );
-
-                            revealObserver.unobserve(
-                                entry.target
-                            );
-
-                        }
-
-                    });
-
-                },
-                {
-                    threshold: 0.12
+    /* =========================================================
+       4. SCROLL REVEAL ANIMATIONS
+       ========================================================= */
+    const revealElements = document.querySelectorAll(".reveal");
+    if (revealElements.length && "IntersectionObserver" in window) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                    revealObserver.unobserve(entry.target);
                 }
-            );
+            });
+        }, { threshold: 0.1 });
 
-
-        revealElements.forEach(element => {
-
-            revealObserver.observe(element);
-
-        });
-
+        revealElements.forEach(el => revealObserver.observe(el));
     } else {
-
-        revealElements.forEach(element => {
-
-            element.classList.add("show");
-
-        });
-
+        revealElements.forEach(el => el.classList.add("show"));
     }
 
-
-    /* =========================================
-       COUNTERS
-    ========================================= */
-
-    const counters =
-        document.querySelectorAll(".counter");
-
+    /* =========================================================
+       5. STATS NUMBER COUNTERS
+       ========================================================= */
+    const counters = document.querySelectorAll(".counter");
     counters.forEach(counter => {
+        let animated = false;
+        const animateCounter = () => {
+            if (animated) return;
+            animated = true;
 
-        let completed = false;
+            const target = Number(counter.dataset.target) || 0;
+            let current = 0;
+            const step = Math.max(1, Math.ceil(target / 40));
 
-        const runCounter = () => {
-
-            if (completed) return;
-
-            completed = true;
-
-            const target =
-                Number(counter.dataset.target) || 0;
-
-            let value = 0;
-
-            const step =
-                Math.max(
-                    1,
-                    Math.ceil(target / 50)
-                );
-
-            const timer =
-                setInterval(() => {
-
-                    value =
-                        Math.min(
-                            target,
-                            value + step
-                        );
-
-                    counter.textContent =
-                        value + "+";
-
-                    if (value >= target) {
-
-                        clearInterval(timer);
-
-                    }
-
-                }, 25);
-
+            const timer = setInterval(() => {
+                current = Math.min(target, current + step);
+                counter.textContent = current + "+";
+                if (current >= target) clearInterval(timer);
+            }, 30);
         };
 
-
-        if (
-            "IntersectionObserver" in window
-        ) {
-
-            const observer =
-                new IntersectionObserver(
-                    entries => {
-
-                        if (
-                            entries[0].isIntersecting
-                        ) {
-
-                            runCounter();
-
-                            observer.disconnect();
-
-                        }
-
-                    },
-                    {
-                        threshold: 0.7
-                    }
-                );
-
+        if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    animateCounter();
+                    observer.disconnect();
+                }
+            }, { threshold: 0.5 });
             observer.observe(counter);
-
         } else {
-
-            runCounter();
-
+            animateCounter();
         }
-
     });
 
+    /* =========================================================
+       6. TRUSTED PORTFOLIO MOBILE TOGGLE
+       ========================================================= */
+    const togglePartnersBtn = document.getElementById("togglePartnersBtn");
+    const customerGrid = document.getElementById("customerGrid");
 
-    /* =========================================
-       OFFER TABS
-    ========================================= */
-
-    const tabs = [
-        ...document.querySelectorAll(".tab")
-    ];
-
-    const panels = [
-        ...document.querySelectorAll(".panel")
-    ];
-
-    if (tabs.length && panels.length) {
-
-        function activateOffer(id, updateURL = true) {
-
-            tabs.forEach(tab => {
-
-                tab.classList.toggle(
-                    "active",
-                    tab.dataset.target === id
-                );
-
-            });
-
-
-            panels.forEach(panel => {
-
-                panel.classList.toggle(
-                    "active",
-                    panel.id === id
-                );
-
-            });
-
-
-            if (updateURL) {
-
-                history.replaceState(
-                    null,
-                    "",
-                    "#" + id
-                );
-
-            }
-
-        }
-
-
-        tabs.forEach(tab => {
-
-            tab.addEventListener(
-                "click",
-                () => {
-
-                    activateOffer(
-                        tab.dataset.target
-                    );
-
-                }
-            );
-
+    if (togglePartnersBtn && customerGrid) {
+        togglePartnersBtn.addEventListener("click", () => {
+            const isExpanded = customerGrid.classList.toggle("show-all");
+            togglePartnersBtn.innerHTML = isExpanded 
+                ? 'View Less Partners <i class="fa-solid fa-chevron-up"></i>' 
+                : 'View More Partners <i class="fa-solid fa-chevron-down"></i>';
         });
-
-
-        const queryService =
-            new URLSearchParams(
-                window.location.search
-            ).get("service");
-
-        const hash =
-            window.location.hash.substring(1);
-
-
-        if (
-            queryService &&
-            document.getElementById(queryService)
-        ) {
-
-            activateOffer(
-                queryService,
-                false
-            );
-
-        } else if (
-            hash &&
-            document.getElementById(hash)
-        ) {
-
-            activateOffer(
-                hash,
-                false
-            );
-
-        }
-
     }
 
+    /* =========================================================
+       7. REAL DATA SOLAR SAVINGS CALCULATOR
+       ========================================================= */
+    const billSlider = document.getElementById("billSlider");
+    const billDisplay = document.getElementById("billDisplay");
+    const typeBtns = document.querySelectorAll(".type-btn");
+    const calcKw = document.getElementById("calcKw");
+    const calcArea = document.getElementById("calcArea");
+    const calcSavings = document.getElementById("calcSavings");
+    const calcSubsidy = document.getElementById("calcSubsidy");
+    const calcPayback = document.getElementById("calcPayback");
+    const calcWhatsappBtn = document.getElementById("calcWhatsappBtn");
 
-    /* =========================================
-       GALLERY
-       - MULTIPLE CATEGORIES
-       - FILTERS
-       - VIEW MORE
-    ========================================= */
+    if (billSlider && calcKw) {
+        let selectedType = "Home Solar";
 
-    const galleryGrid =
-        document.getElementById("galleryGrid");
+        typeBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                typeBtns.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                selectedType = btn.dataset.type || "Home Solar";
+                updateCalculator();
+            });
+        });
 
+        billSlider.addEventListener("input", () => {
+            updateCalculator();
+        });
 
-    if (galleryGrid) {
-
-        const galleryItems = [
-            ...galleryGrid.querySelectorAll(
-                ".gallery-item"
-            )
-        ];
-
-
-        const filterButtons = [
-            ...document.querySelectorAll(".filter")
-        ];
-
-
-        const viewMoreButton =
-            document.getElementById(
-                "viewMoreBtn"
-            );
-
-
-        let activeFilter = "all";
-
-        let expanded = false;
-
-
-        function getCategories(item) {
-
-            return (
-                item.dataset.category || ""
-            )
-                .toLowerCase()
-                .split(/\s+/)
-                .filter(Boolean);
-
-        }
-
-
-        function itemMatchesFilter(
-            item,
-            filter
-        ) {
-
-            if (filter === "all") {
-
-                return true;
-
+        function updateCalculator() {
+            const bill = parseInt(billSlider.value, 10);
+            if (billDisplay) {
+                billDisplay.textContent = "₹" + bill.toLocaleString("en-IN");
             }
 
-            return getCategories(item)
-                .includes(filter);
+            // Real calculations based on Bihar DISCOM tariffs (~₹7.5/kWh) & 4 kWh/kW/day generation
+            const monthlyUnits = bill / 7.5;
+            let kw = (monthlyUnits / 120).toFixed(1);
+            if (kw < 1.0) kw = 1.0;
 
+            const area = Math.round(kw * 100);
+            const annualSavings = Math.round(bill * 12 * 0.90);
+
+            let subsidyText = "₹0";
+            let payback = "3.2 Yrs";
+
+            if (selectedType === "Home Solar") {
+                if (kw <= 1.2) {
+                    subsidyText = "₹30,000";
+                    payback = "2.9 Yrs";
+                } else if (kw <= 2.2) {
+                    subsidyText = "₹60,000";
+                    payback = "3.1 Yrs";
+                } else {
+                    subsidyText = "₹78,000";
+                    payback = "3.2 Yrs";
+                }
+            } else if (selectedType === "Commercial Solar") {
+                subsidyText = "Tax Deprec.*";
+                payback = "2.8 Yrs";
+            } else if (selectedType === "Solar Pump") {
+                subsidyText = "KUSUM Eligible*";
+                payback = "2.5 Yrs";
+            } else {
+                subsidyText = "Commercial ROI";
+                payback = "2.2 Yrs";
+            }
+
+            if (calcKw) calcKw.textContent = kw + " kW";
+            if (calcArea) calcArea.textContent = area + " sq.ft";
+            if (calcSavings) calcSavings.textContent = "₹" + annualSavings.toLocaleString("en-IN");
+            if (calcSubsidy) calcSubsidy.textContent = subsidyText;
+            if (calcPayback) calcPayback.textContent = payback;
+
+            if (calcWhatsappBtn) {
+                const msg = `Hello Smart Solar Solutions, I calculated on your website for a monthly bill of ₹${bill.toLocaleString("en-IN")} (${selectedType}). Recommended System: ${kw} kW (${area} sq.ft roof). Please share a quotation.`;
+                calcWhatsappBtn.href = "https://wa.me/919931798080?text=" + encodeURIComponent(msg);
+            }
         }
 
+        // Initialize on load
+        updateCalculator();
+    }
 
-        function renderGallery() {
+    /* =========================================================
+       8. INTERACTIVE GALLERY GLIMPSE CAROUSEL
+       ========================================================= */
+    const glimpseTrack = document.getElementById("glimpseTrack");
+    const glimpsePrev = document.getElementById("glimpsePrev");
+    const glimpseNext = document.getElementById("glimpseNext");
 
-            const matchingItems = [];
+    if (glimpseTrack && glimpsePrev && glimpseNext) {
+        let glimpseIndex = 0;
 
+        function getVisibleCardsCount() {
+            if (window.innerWidth <= 600) return 1;
+            if (window.innerWidth <= 900) return 2;
+            return 3;
+        }
 
-            galleryItems.forEach(item => {
+        function slideGlimpse() {
+            const cards = glimpseTrack.querySelectorAll(".glimpse-card");
+            if (!cards.length) return;
 
-                item.classList.remove(
-                    "hidden",
-                    "collapsed"
-                );
+            const visibleCount = getVisibleCardsCount();
+            const maxIndex = Math.max(0, cards.length - visibleCount);
+            
+            if (glimpseIndex > maxIndex) glimpseIndex = 0;
+            if (glimpseIndex < 0) glimpseIndex = maxIndex;
 
+            const cardWidth = cards[0].offsetWidth + 20; // width + gap
+            glimpseTrack.style.transform = `translateX(-${glimpseIndex * cardWidth}px)`;
+        }
 
-                if (
-                    itemMatchesFilter(
-                        item,
-                        activeFilter
-                    )
-                ) {
+        glimpseNext.addEventListener("click", () => {
+            glimpseIndex++;
+            slideGlimpse();
+        });
 
-                    matchingItems.push(item);
+        glimpsePrev.addEventListener("click", () => {
+            glimpseIndex--;
+            slideGlimpse();
+        });
 
-                } else {
+        window.addEventListener("resize", slideGlimpse);
+    }
 
-                    item.classList.add(
-                        "hidden"
-                    );
+    /* =========================================================
+       9. PROCESS MOBILE STEP SWITCHER
+       ========================================================= */
+    const pStepBtns = document.querySelectorAll(".p-step-btn");
+    const pStepContents = document.querySelectorAll(".p-step-content");
 
+    if (pStepBtns.length && pStepContents.length) {
+        pStepBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const step = btn.dataset.step;
+                
+                pStepBtns.forEach(b => b.classList.remove("active"));
+                pStepContents.forEach(c => c.classList.remove("active"));
+
+                btn.classList.add("active");
+                const targetContent = document.getElementById("pstep" + step);
+                if (targetContent) {
+                    targetContent.classList.add("active");
                 }
+            });
+        });
+    }
 
+    /* =========================================================
+       10. FAQ ACCORDION HANDLER
+       ========================================================= */
+    const faqQuestions = document.querySelectorAll(".faq-question");
+    faqQuestions.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const parent = btn.closest(".faq-item");
+            if (!parent) return;
+
+            const isActive = parent.classList.contains("active");
+            
+            // Close all items
+            document.querySelectorAll(".faq-item").forEach(item => {
+                item.classList.remove("active");
             });
 
-
-            /*
-             * On "All Projects", initially show
-             * only the first 12 projects.
-             */
-
-            if (
-                activeFilter === "all" &&
-                !expanded
-            ) {
-
-                matchingItems.forEach(
-                    (item, index) => {
-
-                        if (index >= 12) {
-
-                            item.classList.add(
-                                "collapsed"
-                            );
-
-                        }
-
-                    }
-                );
-
+            // Toggle selected item
+            if (!isActive) {
+                parent.classList.add("active");
             }
+        });
+    });
 
+    /* =========================================================
+       11. SOLAR OFFERS CATALOGUE TABS (OFFER.HTML)
+       ========================================================= */
+    const offerTabs = [...document.querySelectorAll(".sidebar .tab")];
+    const offerPanels = [...document.querySelectorAll(".offers-content .panel")];
 
-            if (viewMoreButton) {
+    if (offerTabs.length && offerPanels.length) {
+        function activateOfferTab(targetId) {
+            offerTabs.forEach(tab => {
+                tab.classList.toggle("active", tab.dataset.target === targetId);
+            });
+            offerPanels.forEach(panel => {
+                panel.classList.toggle("active", panel.id === targetId);
+            });
+        }
 
-                const hasMore =
-                    matchingItems.length > 12;
+        offerTabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                activateOfferTab(tab.dataset.target);
+            });
+        });
 
+        // Check URL parameters or hash
+        const urlParams = new URLSearchParams(window.location.search);
+        const serviceParam = urlParams.get("service") || window.location.hash.substring(1);
+        if (serviceParam && document.getElementById(serviceParam)) {
+            activateOfferTab(serviceParam);
+        }
+    }
 
-                if (
-                    activeFilter === "all" &&
-                    hasMore
-                ) {
+    /* =========================================================
+       12. PROJECT GALLERY FILTERS & LIGHTBOX (GALLERY.HTML & INDEX.HTML)
+       ========================================================= */
+    const filterBtns = document.querySelectorAll(".filter-bar .filter");
+    const galleryItems = document.querySelectorAll(".full-gallery .gallery-item, .gallery-grid .gallery-item");
 
-                    viewMoreButton.style.display =
-                        "inline-flex";
+    if (filterBtns.length && galleryItems.length) {
+        filterBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                filterBtns.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
 
+                const filter = btn.dataset.filter || "all";
 
-                    if (expanded) {
-
-                        viewMoreButton.innerHTML =
-                            `
-                            Show Fewer Projects
-                            <i class="fa-solid fa-arrow-up"></i>
-                            `;
-
+                galleryItems.forEach(item => {
+                    const category = (item.dataset.category || "").toLowerCase();
+                    if (filter === "all" || category.includes(filter)) {
+                        item.style.display = "block";
                     } else {
-
-                        viewMoreButton.innerHTML =
-                            `
-                            View More Projects
-                            <i class="fa-solid fa-arrow-down"></i>
-                            `;
-
+                        item.style.display = "none";
                     }
-
-                } else {
-
-                    viewMoreButton.style.display =
-                        "none";
-
-                }
-
-            }
-
-        }
-
-
-        /* FILTER BUTTONS */
-
-        filterButtons.forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    filterButtons.forEach(
-                        btn => {
-
-                            btn.classList.remove(
-                                "active"
-                            );
-
-                        }
-                    );
-
-
-                    button.classList.add(
-                        "active"
-                    );
-
-
-                    activeFilter =
-                        button.dataset.filter;
-
-
-                    /*
-                     * When a category is selected,
-                     * show all matching projects.
-                     */
-
-                    expanded =
-                        activeFilter !== "all";
-
-
-                    renderGallery();
-
-                }
-            );
-
+                });
+            });
         });
-
-
-        /* VIEW MORE */
-
-        if (viewMoreButton) {
-
-            viewMoreButton.addEventListener(
-                "click",
-                () => {
-
-                    expanded = !expanded;
-
-                    renderGallery();
-
-                }
-            );
-
-        }
-
-
-        renderGallery();
-
     }
 
-
-    /* =========================================
-       GALLERY LIGHTBOX
-       IMAGE + VIDEO SUPPORT
-    ========================================= */
-
-    const lightbox =
-        document.getElementById(
-            "lightbox"
-        );
-
-
-    const lightboxImage =
-        document.getElementById(
-            "lightboxImage"
-        );
-
-
-    const lightboxTitle =
-        document.getElementById(
-            "lightboxTitle"
-        );
-
-
-    const lightboxDescription =
-        document.getElementById(
-            "lightboxDescription"
-        );
-
+    // Lightbox modal functionality
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxTitle = document.getElementById("lightboxTitle");
+    const lightboxDesc = document.getElementById("lightboxDescription");
+    const lightboxClose = document.getElementById("lightboxClose");
+    const lightboxPrev = document.getElementById("lightboxPrev");
+    const lightboxNext = document.getElementById("lightboxNext");
 
     if (lightbox) {
-
-        let visibleItems = [];
-
-        let currentIndex = 0;
-
-
-        function getVisibleGalleryItems() {
-
-            return [
-                ...document.querySelectorAll(
-                    ".gallery-item:not(.hidden):not(.collapsed)"
-                )
-            ];
-
-        }
-
-
-        function updateLightbox(item) {
-
-            if (!item) return;
-
-
-            const image =
-                item.querySelector(
-                    "img"
-                );
-
-
-            const video =
-                item.querySelector(
-                    "video"
-                );
-
-
-            /*
-             * Remove previous lightbox media
-             */
-
-            lightbox
-                .querySelectorAll(
-                    ".lightbox-video"
-                )
-                .forEach(videoElement => {
-
-                    videoElement.remove();
-
-                });
-
-
-            if (lightboxImage) {
-
-                lightboxImage.style.display =
-                    "none";
-
-            }
-
-
-            /*
-             * IMAGE
-             */
-
-            if (image) {
-
-                if (lightboxImage) {
-
-                    lightboxImage.src =
-                        item.dataset.image ||
-                        image.currentSrc ||
-                        image.src;
-
-                    lightboxImage.alt =
-                        item.dataset.title ||
-                        image.alt ||
-                        "Solar project";
-
-                    lightboxImage.style.display =
-                        "block";
-
-                }
-
-            }
-
-
-            /*
-             * VIDEO
-             */
-
-            if (video) {
-
-                const videoSource =
-                    video.querySelector(
-                        "source"
-                    );
-
-
-                const lightboxVideo =
-                    document.createElement(
-                        "video"
-                    );
-
-
-                lightboxVideo.className =
-                    "lightbox-video";
-
-
-                lightboxVideo.controls = true;
-
-                lightboxVideo.autoplay = true;
-
-                lightboxVideo.playsInline = true;
-
-
-                if (videoSource) {
-
-                    lightboxVideo.src =
-                        videoSource.src;
-
-                }
-
-
-                lightboxVideo.style.maxWidth =
-                    "92vw";
-
-                lightboxVideo.style.maxHeight =
-                    "78vh";
-
-                lightboxVideo.style.width =
-                    "auto";
-
-                lightboxVideo.style.height =
-                    "auto";
-
-
-                const mediaContainer =
-                    lightbox.querySelector(
-                        ".lightbox-media"
-                    );
-
-
-                if (mediaContainer) {
-
-                    mediaContainer.appendChild(
-                        lightboxVideo
-                    );
-
-                } else {
-
-                    lightbox.appendChild(
-                        lightboxVideo
-                    );
-
-                }
-
-            }
-
-
-            if (lightboxTitle) {
-
-                lightboxTitle.textContent =
-                    item.dataset.title || "";
-
-            }
-
-
-            if (lightboxDescription) {
-
-                lightboxDescription.textContent =
-                    item.dataset.description || "";
-
-            }
-
-        }
-
+        let allGalleryItems = [...document.querySelectorAll(".gallery-item")];
+        let currentItemIndex = 0;
 
         function openLightbox(item) {
+            allGalleryItems = [...document.querySelectorAll(".gallery-item")].filter(el => el.offsetParent !== null);
+            currentItemIndex = allGalleryItems.indexOf(item);
+            if (currentItemIndex === -1) currentItemIndex = 0;
 
-            visibleItems =
-                getVisibleGalleryItems();
-
-
-            currentIndex =
-                Math.max(
-                    0,
-                    visibleItems.indexOf(item)
-                );
-
-
-            updateLightbox(
-                visibleItems[currentIndex]
-            );
-
-
-            lightbox.classList.add(
-                "open"
-            );
-
-
-            lightbox.setAttribute(
-                "aria-hidden",
-                "false"
-            );
-
-
-            document.body.classList.add(
-                "menu-open"
-            );
-
+            showLightboxItem(allGalleryItems[currentItemIndex]);
+            lightbox.classList.add("open");
+            lightbox.setAttribute("aria-hidden", "false");
+            document.body.classList.add("menu-open");
         }
 
+        function showLightboxItem(item) {
+            if (!item) return;
+            const img = item.querySelector("img");
+            const src = item.dataset.image || (img ? img.src : "");
+            const title = item.dataset.title || (item.querySelector("h3") ? item.querySelector("h3").textContent : "Solar Project");
+            const desc = item.dataset.description || (item.querySelector("p") ? item.querySelector("p").textContent : "Smart Solar Solutions Installation");
+
+            if (lightboxImage && src) lightboxImage.src = src;
+            if (lightboxTitle) lightboxTitle.textContent = title;
+            if (lightboxDesc) lightboxDesc.textContent = desc;
+        }
 
         function closeLightbox() {
-
-            lightbox.classList.remove(
-                "open"
-            );
-
-
-            lightbox.setAttribute(
-                "aria-hidden",
-                "true"
-            );
-
-
-            document.body.classList.remove(
-                "menu-open"
-            );
-
-
-            lightbox
-                .querySelectorAll(
-                    ".lightbox-video"
-                )
-                .forEach(video => {
-
-                    video.pause();
-
-                    video.remove();
-
-                });
-
+            lightbox.classList.remove("open");
+            lightbox.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("menu-open");
         }
 
+        // Attach click to all gallery items
+        document.querySelectorAll(".gallery-item").forEach(item => {
+            item.addEventListener("click", () => openLightbox(item));
+        });
 
-        function moveLightbox(direction) {
-
-            visibleItems =
-                getVisibleGalleryItems();
-
-
-            if (!visibleItems.length) {
-
-                return;
-
-            }
-
-
-            currentIndex =
-                (
-                    currentIndex +
-                    direction +
-                    visibleItems.length
-                ) %
-                visibleItems.length;
-
-
-            updateLightbox(
-                visibleItems[currentIndex]
-            );
-
-        }
-
-
-        /*
-         * Open when clicking gallery card.
-         */
-
-        galleryGrid
-            ?.querySelectorAll(
-                ".gallery-item"
-            )
-            .forEach(item => {
-
-                item.addEventListener(
-                    "click",
-                    () => {
-
-                        openLightbox(item);
-
-                    }
-                );
-
+        if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
+        
+        if (lightboxPrev) {
+            lightboxPrev.addEventListener("click", (e) => {
+                e.stopPropagation();
+                currentItemIndex = (currentItemIndex - 1 + allGalleryItems.length) % allGalleryItems.length;
+                showLightboxItem(allGalleryItems[currentItemIndex]);
             });
-
-
-        /*
-         * Close
-         */
-
-        document
-            .getElementById(
-                "lightboxClose"
-            )
-            ?.addEventListener(
-                "click",
-                closeLightbox
-            );
-
-
-        /*
-         * Previous
-         */
-
-        document
-            .getElementById(
-                "lightboxPrev"
-            )
-            ?.addEventListener(
-                "click",
-                event => {
-
-                    event.stopPropagation();
-
-                    moveLightbox(-1);
-
-                }
-            );
-
-
-        /*
-         * Next
-         */
-
-        document
-            .getElementById(
-                "lightboxNext"
-            )
-            ?.addEventListener(
-                "click",
-                event => {
-
-                    event.stopPropagation();
-
-                    moveLightbox(1);
-
-                }
-            );
-
-
-        /*
-         * Click outside media
-         */
-
-        lightbox.addEventListener(
-            "click",
-            event => {
-
-                if (
-                    event.target === lightbox
-                ) {
-
-                    closeLightbox();
-
-                }
-
-            }
-        );
-
-
-        /*
-         * Keyboard controls
-         */
-
-        document.addEventListener(
-            "keydown",
-            event => {
-
-                if (
-                    !lightbox.classList.contains(
-                        "open"
-                    )
-                ) {
-
-                    return;
-
-                }
-
-
-                if (
-                    event.key === "Escape"
-                ) {
-
-                    closeLightbox();
-
-                }
-
-
-                if (
-                    event.key === "ArrowLeft"
-                ) {
-
-                    moveLightbox(-1);
-
-                }
-
-
-                if (
-                    event.key === "ArrowRight"
-                ) {
-
-                    moveLightbox(1);
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       VIDEO PREVIEWS
-    ========================================= */
-
-    const galleryVideos =
-        document.querySelectorAll(
-            ".gallery-video-preview"
-        );
-
-
-    galleryVideos.forEach(video => {
-
-        video.muted = true;
-
-        video.loop = true;
-
-        video.playsInline = true;
-
-
-        /*
-         * Automatically preview video when
-         * it enters the viewport.
-         */
-
-        if (
-            "IntersectionObserver" in window
-        ) {
-
-            const videoObserver =
-                new IntersectionObserver(
-                    entries => {
-
-                        entries.forEach(
-                            entry => {
-
-                                if (
-                                    entry.isIntersecting
-                                ) {
-
-                                    video.play()
-                                        .catch(
-                                            () => {}
-                                        );
-
-                                } else {
-
-                                    video.pause();
-
-                                }
-
-                            }
-                        );
-
-                    },
-                    {
-                        threshold: 0.25
-                    }
-                );
-
-
-            videoObserver.observe(video);
-
         }
 
-    });
+        if (lightboxNext) {
+            lightboxNext.addEventListener("click", (e) => {
+                e.stopPropagation();
+                currentItemIndex = (currentItemIndex + 1) % allGalleryItems.length;
+                showLightboxItem(allGalleryItems[currentItemIndex]);
+            });
+        }
 
+        lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
 
-    /* =========================================
-       WHATSAPP LEAD FORM
-    ========================================= */
-
-    const leadForm =
-        document.getElementById(
-            "leadForm"
-        );
-
-
-    if (leadForm) {
-
-        leadForm.addEventListener(
-            "submit",
-            event => {
-
-                event.preventDefault();
-
-
-                const getValue = id => {
-
-                    return (
-                        document
-                            .getElementById(id)
-                            ?.value
-                            .trim() || ""
-                    );
-
-                };
-
-
-                const name =
-                    getValue("name");
-
-                const phone =
-                    getValue("phone");
-
-                const service =
-                    getValue("service");
-
-                const load =
-                    getValue("load");
-
-                const message =
-                    getValue("message");
-
-
-                const whatsappMessage =
-                    `
-Hello Smart Solar Solutions,
-
-Name: ${name}
-Phone: ${phone}
-Application: ${service}
-Requirement: ${load}
-Message: ${message}
-                    `.trim();
-
-
-                const whatsappURL =
-                    "https://wa.me/919931798080?text=" +
-                    encodeURIComponent(
-                        whatsappMessage
-                    );
-
-
-                window.open(
-                    whatsappURL,
-                    "_blank",
-                    "noopener,noreferrer"
-                );
-
-            }
-        );
-
+        document.addEventListener("keydown", (e) => {
+            if (!lightbox.classList.contains("open")) return;
+            if (e.key === "Escape") closeLightbox();
+            if (e.key === "ArrowLeft" && lightboxPrev) lightboxPrev.click();
+            if (e.key === "ArrowRight" && lightboxNext) lightboxNext.click();
+        });
     }
 
+    /* =========================================================
+       13. WHATSAPP LEAD FORM
+       ========================================================= */
+    const leadForm = document.getElementById("leadForm");
+    if (leadForm) {
+        leadForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const name = document.getElementById("name")?.value.trim() || "";
+            const phone = document.getElementById("phone")?.value.trim() || "";
+            const service = document.getElementById("service")?.value || "";
+            const load = document.getElementById("load")?.value.trim() || "";
+            const message = document.getElementById("message")?.value.trim() || "";
+
+            const text = `Hello Smart Solar Solutions,\n\nName: ${name}\nPhone: ${phone}\nApplication: ${service}\nLoad/Requirement: ${load}\nMessage: ${message}`;
+            const url = "https://wa.me/919931798080?text=" + encodeURIComponent(text);
+            window.open(url, "_blank", "noopener,noreferrer");
+        });
+    }
 
 });
