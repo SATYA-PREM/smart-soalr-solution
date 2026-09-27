@@ -1,5 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /scratch/
 
+# Major Search Engine Sitemaps
 Sitemap: https://smartsolarsolutions.in/sitemap.xml
 
+# Crawl Delay
+Crawl-delay: 1

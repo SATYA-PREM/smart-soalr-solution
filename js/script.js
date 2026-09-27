@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
        ========================================================= */
     const themeBtn = document.getElementById("themeToggleBtn");
     
-    // Default to dark luxury theme if not set
-    const currentTheme = localStorage.getItem("theme") || "dark";
+    // Default to clean slate light theme if not set
+    const currentTheme = localStorage.getItem("theme") || "light";
     document.documentElement.setAttribute("data-theme", currentTheme);
     
     if (themeBtn) {
@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         themeBtn.addEventListener("click", () => {
-            const activeTheme = document.documentElement.getAttribute("data-theme") || "dark";
-            const newTheme = activeTheme === "dark" ? "light" : "dark";
+            const activeTheme = document.documentElement.getAttribute("data-theme") || "light";
+            const newTheme = activeTheme === "light" ? "dark" : "light";
             
             document.documentElement.setAttribute("data-theme", newTheme);
             localStorage.setItem("theme", newTheme);

@@ -3,40 +3,8 @@
    Design Concept: Luxury Solar Tech × Modern Fintech × Architectural Aesthetics
    ========================================================= */
 
-:root {
-    /* DARK LUXURY THEME (DEFAULT HIGH-TECH SOLAR IDENTITY) */
-    --bg: #050b14;
-    --bg-surface: #0b111c;
-    --bg-card: rgba(11, 17, 28, 0.85);
-    --bg-card-hover: rgba(15, 23, 38, 0.95);
-    --bg-glass: rgba(5, 11, 20, 0.85);
-    --ink: #ffffff;
-    --text-primary: #ffffff;
-    --text-secondary: #94a3b8;
-    --muted: #64748b;
-    --line: rgba(255, 255, 255, 0.09);
-    --line-light: rgba(255, 255, 255, 0.05);
-    --green: #10e776;
-    --green-glow: rgba(16, 231, 118, 0.22);
-    --green-dark: #0dbb5e;
-    --yellow: #f7a900;
-    --white: #0b111c;
-    --shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
-    --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.35);
-    --input-bg: rgba(5, 11, 20, 0.6);
-    --input-border: rgba(255, 255, 255, 0.1);
-    --calc-result-bg: linear-gradient(145deg, #0f1a28 0%, #060c15 100%);
-    --calc-stat-bg: rgba(255, 255, 255, 0.04);
-    --about-banner-bg: linear-gradient(135deg, #0e1a2b 0%, #050b14 100%);
-    --about-banner-text: #ffffff;
-    --about-banner-sub: #94a3b8;
-    --container: 1360px;
-    --font-head: 'Poppins', sans-serif;
-    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
-[data-theme="light"] {
-    /* CLEAN SLATE LIGHT THEME */
+:root, [data-theme="light"] {
+    /* CLEAN SLATE LIGHT THEME (DEFAULT) */
     --bg: #f4f7f6;
     --bg-surface: #ffffff;
     --bg-card: #ffffff;
@@ -62,6 +30,38 @@
     --about-banner-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     --about-banner-text: #ffffff;
     --about-banner-sub: #cbd5e1;
+    --container: 1360px;
+    --font-head: 'Poppins', sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+[data-theme="dark"] {
+    /* DARK LUXURY THEME */
+    --bg: #050b14;
+    --bg-surface: #0b111c;
+    --bg-card: rgba(11, 17, 28, 0.85);
+    --bg-card-hover: rgba(15, 23, 38, 0.95);
+    --bg-glass: rgba(5, 11, 20, 0.85);
+    --ink: #ffffff;
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    --muted: #64748b;
+    --line: rgba(255, 255, 255, 0.09);
+    --line-light: rgba(255, 255, 255, 0.05);
+    --green: #10e776;
+    --green-glow: rgba(16, 231, 118, 0.22);
+    --green-dark: #0dbb5e;
+    --yellow: #f7a900;
+    --white: #0b111c;
+    --shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+    --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.35);
+    --input-bg: rgba(5, 11, 20, 0.6);
+    --input-border: rgba(255, 255, 255, 0.1);
+    --calc-result-bg: linear-gradient(145deg, #0f1a28 0%, #060c15 100%);
+    --calc-stat-bg: rgba(255, 255, 255, 0.04);
+    --about-banner-bg: linear-gradient(135deg, #0e1a2b 0%, #050b14 100%);
+    --about-banner-text: #ffffff;
+    --about-banner-sub: #94a3b8;
 }
 
 /* =========================================================
@@ -2446,6 +2446,130 @@ footer li a:hover {
     height: 100%;
     min-height: 420px;
     border-radius: 20px;
+}
+
+/* =========================================================
+   PRIVACY POLICY & TERMS PAGES STYLING
+   ========================================================= */
+
+.policy-section {
+    background: var(--bg);
+}
+
+.policy-wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.policy-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 36px 40px;
+    box-shadow: var(--shadow-sm);
+    color: var(--text-primary);
+}
+
+.policy-card h2 {
+    font-size: 22px;
+    margin-bottom: 14px;
+    color: var(--text-primary);
+    font-family: var(--font-head);
+}
+
+.policy-card p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.policy-card p:last-child {
+    margin-bottom: 0;
+}
+
+.policy-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background: var(--line-light);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 14px;
+}
+
+.policy-list {
+    padding-left: 20px;
+    margin-top: 10px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+.policy-list li {
+    margin-bottom: 10px;
+}
+
+.policy-list li strong {
+    color: var(--text-primary);
+}
+
+.policy-contact-box {
+    margin-top: 16px;
+    background: var(--line-light);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 20px 24px;
+}
+
+.policy-contact-box p {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.policy-contact-box p:last-child {
+    margin-bottom: 0;
+}
+
+.policy-contact-box i {
+    color: var(--green);
+}
+
+/* COPYRIGHT BAR LINKS */
+.copyright {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.copyright-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.copyright-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 12px;
+    transition: color 0.2s ease;
+}
+
+.copyright-links a:hover {
+    color: var(--green);
 }
 
 /* =========================================================
