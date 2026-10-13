@@ -92,3 +92,30 @@
   }
 }
 
+/* MOBILE PHONES (<480px) */
+@media (max-width: 480px) {
+  .policy-card {
+    padding: 16px 14px;
+  }
+
+  .policy-card h2 {
+    font-size: 17px;
+  }
+
+  .policy-card p {
+    font-size: 13.5px;
+  }
+
+  .policy-list {
+    padding-left: 16px;
+  }
+
+  .policy-list li {
+    font-size: 13px;
+  }
+
+  .policy-contact-box {
+    padding: 12px;
+  }
+}
+

@@ -238,3 +238,61 @@
   }
 }
 
+/* MOBILE PHONES (<480px) */
+@media (max-width: 480px) {
+  .about-banner-card {
+    padding: 20px 16px;
+    border-radius: var(--radius-lg);
+    gap: var(--space-md);
+  }
+
+  .about-banner-card h2 {
+    font-size: 20px;
+  }
+
+  .about-banner-card p {
+    font-size: 13.5px;
+  }
+
+  .about-copy h2 {
+    font-size: 22px;
+  }
+
+  .about-copy p {
+    font-size: 14px;
+  }
+
+  .about-badge {
+    bottom: 8px;
+    right: 8px;
+    padding: 6px 10px;
+  }
+
+  .about-badge strong {
+    font-size: 18px;
+  }
+
+  .about-badge span {
+    font-size: 10px;
+  }
+
+  .about-contact-card {
+    padding: 14px 12px;
+    gap: 10px;
+  }
+
+  .about-contact-card .acc-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+  }
+
+  .about-contact-card h4 {
+    font-size: 14px;
+  }
+
+  .about-contact-card p {
+    font-size: 13px;
+  }
+}
+

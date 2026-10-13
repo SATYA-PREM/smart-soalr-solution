@@ -140,3 +140,45 @@
   }
 }
 
+/* MOBILE PHONES (<480px) */
+@media (max-width: 480px) {
+  .compact-client-grid {
+    gap: 12px;
+  }
+
+  .client-card {
+    padding: 16px 14px;
+  }
+
+  .client-logo-box {
+    height: 64px;
+    margin-bottom: 10px;
+  }
+
+  .client-logo-box img {
+    max-height: 52px;
+    max-width: 130px;
+  }
+
+  .client-card-info h3 {
+    font-size: 15px;
+  }
+
+  .client-card-info p {
+    font-size: 12.5px;
+  }
+
+  .clients-cta-box {
+    padding: 20px 16px;
+    gap: var(--space-md);
+  }
+
+  .clients-cta-copy h2 {
+    font-size: 20px;
+  }
+
+  .clients-cta-copy p {
+    font-size: 13.5px;
+  }
+}
+

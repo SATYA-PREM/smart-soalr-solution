@@ -339,3 +339,66 @@
   }
 }
 
+/* MOBILE PHONES (<480px) */
+@media (max-width: 480px) {
+  .offer-modal-container {
+    width: 96vw;
+    max-width: 96vw;
+    max-height: 94vh;
+  }
+
+  .offer-modal-close {
+    top: 8px;
+    right: 8px;
+    width: 34px;
+    height: 34px;
+    font-size: 15px;
+  }
+
+  .offer-modal-actions {
+    padding: 10px 12px;
+    gap: 6px;
+  }
+
+  .offer-btn-enquiry, .offer-btn-whatsapp {
+    padding: 11px 14px;
+    font-size: 13.5px;
+  }
+
+  /* Floating Corner Widget on Small Mobile */
+  .floating-corner-offer {
+    bottom: 70px;
+    right: 12px;
+    width: 220px;
+    max-width: calc(100vw - 24px);
+  }
+
+  .floating-corner-offer.minimized {
+    bottom: 70px;
+    right: 12px;
+  }
+
+  .floating-offer-header {
+    padding: 6px 10px;
+  }
+
+  .floating-offer-tag {
+    font-size: 10px;
+  }
+
+  .floating-offer-close {
+    width: 22px;
+    height: 22px;
+    font-size: 12px;
+  }
+}
+
+/* ULTRA-COMPACT MOBILE (<360px) */
+@media (max-width: 360px) {
+  .floating-corner-offer {
+    width: 200px;
+    bottom: 68px;
+    right: 8px;
+  }
+}
+

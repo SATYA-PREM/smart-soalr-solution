@@ -384,3 +384,60 @@
   }
 }
 
+/* MOBILE PHONES (<480px) */
+@media (max-width: 480px) {
+  .offers-hero {
+    padding: var(--space-2xl) 0;
+  }
+
+  .offers-hero-grid h1 {
+    font-size: 24px;
+  }
+
+  .sidebar .tab {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .panel-head h2 {
+    font-size: 20px;
+  }
+
+  .panel-head p {
+    font-size: 13.5px;
+  }
+
+  .card {
+    padding: 16px 14px;
+  }
+
+  .card-specs {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .card-head h3 {
+    font-size: 17px;
+  }
+
+  .card-price .amount {
+    font-size: 22px;
+  }
+
+  .offer-body {
+    padding: 16px 14px;
+  }
+
+  .offer-body h3 {
+    font-size: 17px;
+  }
+
+  .offer-body p {
+    font-size: 13px;
+  }
+
+  .panel-cta {
+    padding: 14px 12px;
+  }
+}
+

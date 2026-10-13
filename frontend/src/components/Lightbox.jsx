@@ -96,19 +96,36 @@ export default function Lightbox({
         <div
           className="lightbox-media"
           style={{
-            backgroundImage: currentThumb ? `url("${currentThumb}")` : "none",
+            backgroundImage:
+              !currentItem.youtubeId && currentThumb
+                ? `url("${currentThumb}")`
+                : "none",
             backgroundSize: "contain",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
           }}
         >
-          <img
-            className={`lightbox-image ${fullImgLoaded ? "loaded" : "loading"}`}
-            id="lightboxImage"
-            src={currentItem.image || ""}
-            alt={currentItem.title || "Enlarged Project View"}
-            onLoad={() => setFullImgLoaded(true)}
-          />
+          {currentItem.youtubeId ? (
+            <div className="lightbox-video-container">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${currentItem.youtubeId}?autoplay=1&rel=0`}
+                title={currentItem.title || "Solar Project Video"}
+                className="lightbox-iframe"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          ) : (
+            <img
+              className={`lightbox-image ${
+                fullImgLoaded ? "loaded" : "loading"
+              }`}
+              id="lightboxImage"
+              src={currentItem.image || ""}
+              alt={currentItem.title || "Enlarged Project View"}
+              onLoad={() => setFullImgLoaded(true)}
+            />
+          )}
         </div>
         <div className="lightbox-caption">
           <strong id="lightboxTitle">
@@ -130,13 +147,18 @@ export default function Lightbox({
                   type="button"
                   className={`lightbox-thumb-item ${
                     idx === currentIndex ? "active" : ""
-                  }`}
+                  } ${item.youtubeId ? "is-video" : ""}`}
                   onClick={() =>
                     selectLightboxIndex && selectLightboxIndex(idx)
                   }
                   aria-label={item.title || `Thumbnail ${idx + 1}`}
                 >
                   <img src={tUrl || item.image} alt={item.title || ""} />
+                  {item.youtubeId && (
+                    <span className="thumb-video-icon">
+                      <i className="fa-brands fa-youtube"></i>
+                    </span>
+                  )}
                 </button>
               );
             })}

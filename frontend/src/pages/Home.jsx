@@ -177,9 +177,6 @@ export default function Home({ openLightbox }) {
                 />
               ))}
               <div className="hero-slider-overlay"></div>
-              <div className="hero-slide-badge">
-                <i className="fa-solid fa-solar-panel"></i> {activeSlideObj.alt}
-              </div>
               <div className="hero-slider-dots" id="heroDots">
                 {HERO_SLIDES.map((_, idx) => (
                   <button

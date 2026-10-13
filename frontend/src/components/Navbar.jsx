@@ -22,6 +22,17 @@ export default function Navbar({ theme, toggleTheme, onToggleTheme }) {
     }
   }, [mobileMenuOpen]);
 
+  // Close mobile menu on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape" && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [mobileMenuOpen]);
+
   const handleHashLink = (e, hashId) => {
     e.preventDefault();
     setMobileMenuOpen(false);
@@ -40,7 +51,7 @@ export default function Navbar({ theme, toggleTheme, onToggleTheme }) {
   return (
     <header className="navbar">
       <div className="container nav-inner">
-        <Link className="brand" to="/">
+        <Link className="brand" to="/" onClick={() => setMobileMenuOpen(false)}>
           <img
             src="/logo smart.webp"
             alt="Smart Solar Solutions Logo"
@@ -57,21 +68,17 @@ export default function Navbar({ theme, toggleTheme, onToggleTheme }) {
           </div>
         </Link>
 
-        <button
-          className="menu"
-          id="menuBtn"
-          aria-label="Toggle Menu"
-          aria-expanded={mobileMenuOpen}
-          onClick={() => setMobileMenuOpen((prev) => !prev)}
-        >
-          <i className="fa-solid fa-bars"></i>
-        </button>
-
+        {/* Centered Desktop Navigation & Mobile Drawer */}
         <nav
           className={`nav-links ${mobileMenuOpen ? "open" : ""}`}
           id="navLinks"
+          aria-label="Main Navigation"
         >
-          <Link className={isActive("/") ? "active" : ""} to="/">
+          <Link
+            className={isActive("/") ? "active" : ""}
+            to="/"
+            onClick={() => setMobileMenuOpen(false)}
+          >
             Home
           </Link>
           <a
@@ -80,26 +87,58 @@ export default function Navbar({ theme, toggleTheme, onToggleTheme }) {
           >
             Calculator
           </a>
-          <Link className={isActive("/about") ? "active" : ""} to="/about">
+          <Link
+            className={isActive("/about") ? "active" : ""}
+            to="/about"
+            onClick={() => setMobileMenuOpen(false)}
+          >
             About Us
           </Link>
-          <Link className={isActive("/offer") ? "active" : ""} to="/offer">
+          <Link
+            className={isActive("/offer") ? "active" : ""}
+            to="/offer"
+            onClick={() => setMobileMenuOpen(false)}
+          >
             Offers
           </Link>
-          <Link className={isActive("/gallery") ? "active" : ""} to="/gallery">
+          <Link
+            className={isActive("/gallery") ? "active" : ""}
+            to="/gallery"
+            onClick={() => setMobileMenuOpen(false)}
+          >
             Gallery
           </Link>
-          <Link className={isActive("/clients") ? "active" : ""} to="/clients">
+          <Link
+            className={isActive("/clients") ? "active" : ""}
+            to="/clients"
+            onClick={() => setMobileMenuOpen(false)}
+          >
             Clients
           </Link>
           <a href="/#contact" onClick={(e) => handleHashLink(e, "contact")}>
             Contact
           </a>
+
+          {/* WhatsApp CTA inside mobile drawer */}
+          <a
+            className="wa nav-mobile-cta"
+            href="https://wa.me/919931798080?text=Hello%20Smart%20Solar%20Solutions,%20I%20want%20a%20solar%20system%20consultation."
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <i className="fa-brands fa-whatsapp"></i> WhatsApp
+          </a>
+        </nav>
+
+        {/* Right Actions: Theme Toggle + Desktop WhatsApp + Mobile Menu Toggle */}
+        <div className="nav-actions">
           <button
             className="theme-toggle-btn"
             id="themeToggleBtn"
             aria-label="Toggle Theme"
             onClick={handleThemeToggle}
+            title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
           >
             <i
               className={
@@ -107,15 +146,26 @@ export default function Navbar({ theme, toggleTheme, onToggleTheme }) {
               }
             ></i>
           </button>
+
           <a
-            className="wa"
+            className="wa nav-desktop-cta"
             href="https://wa.me/919931798080?text=Hello%20Smart%20Solar%20Solutions,%20I%20want%20a%20solar%20system%20consultation."
             target="_blank"
             rel="noopener noreferrer"
           >
             <i className="fa-brands fa-whatsapp"></i> WhatsApp
           </a>
-        </nav>
+
+          <button
+            className="menu"
+            id="menuBtn"
+            aria-label="Toggle Menu"
+            aria-expanded={mobileMenuOpen}
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+          >
+            <i className={`fa-solid ${mobileMenuOpen ? "fa-xmark" : "fa-bars"}`}></i>
+          </button>
+        </div>
       </div>
     </header>
   );
