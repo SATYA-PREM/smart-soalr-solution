@@ -1,0 +1,142 @@
+/* =========================================================
+   SMART SOLAR SOLUTIONS — CLIENTS PORTFOLIO STYLESHEET
+   Commercial, Institutional & Government Projects Directory
+   ========================================================= */
+
+.compact-client-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-3xl);
+  width: 100%;
+  min-width: 0;
+}
+
+.client-card {
+  background-color: var(--pure-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: var(--shadow-subtle);
+  transition: all var(--transition-fast);
+}
+
+.client-card:hover {
+  border-color: var(--forest-green);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.client-logo-box {
+  width: 100%;
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-md);
+}
+
+.client-logo-box img {
+  max-height: 68px;
+  max-width: 160px;
+  object-fit: contain;
+}
+
+.client-fuel-icon {
+  font-size: 38px;
+  color: var(--forest-green);
+}
+
+.client-badge {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--forest-green);
+  background-color: var(--soft-sage);
+  padding: 3px 10px;
+  border-radius: var(--radius-xs);
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+.client-card-info h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.client-arrow {
+  display: none;
+}
+
+.client-card-info p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Commercial Consultation CTA Box */
+.clients-cta-box {
+  background-color: var(--deep-green);
+  color: #FFFFFF;
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.clients-cta-copy h2 {
+  color: #FFFFFF;
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.clients-cta-copy p {
+  color: #DCE2DC;
+  font-size: 15px;
+  max-width: 600px;
+}
+
+.clients-cta-copy .eyebrow {
+  color: #a7e0c7;
+}
+
+/* TABLET RESPONSIVE */
+@media (max-width: 1024px) {
+  .compact-client-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--space-md);
+  }
+}
+
+/* MOBILE RESPONSIVE (<768px) */
+@media (max-width: 768px) {
+  .compact-client-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .client-card {
+    padding: var(--space-lg);
+  }
+
+  .clients-cta-box {
+    padding: var(--space-xl);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-lg);
+  }
+
+  .clients-cta-box .btn {
+    width: 100%;
+  }
+}
+

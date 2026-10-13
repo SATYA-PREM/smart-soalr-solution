@@ -1,0 +1,142 @@
+/* =========================================================
+   SMART SOLAR SOLUTIONS — CORPORATE FOOTER
+   Architectural Deep Green (#183D30) & High-Contrast Typography
+   ========================================================= */
+
+footer {
+  background-color: var(--deep-green);
+  color: #FFFFFF;
+  border-top: 1px solid #204c3c;
+  padding-top: var(--space-4xl);
+  padding-bottom: var(--space-xl);
+  position: relative;
+  width: 100%;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-3xl);
+  width: 100%;
+  min-width: 0;
+}
+
+.footer-brand img {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 12px;
+}
+
+.footer-brand h3 {
+  font-family: var(--font-head);
+  font-size: 18px;
+  color: #FFFFFF;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.footer-brand p {
+  color: #B5C4BC;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+footer h4 {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #FFFFFF;
+  margin-bottom: var(--space-md);
+}
+
+footer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+}
+
+footer ul li {
+  font-size: 14px;
+  color: #B5C4BC;
+  word-break: break-word;
+}
+
+footer ul li a {
+  color: #B5C4BC;
+  transition: color var(--transition-fast);
+  display: inline-block;
+}
+
+footer ul li a:hover {
+  color: #FFFFFF;
+}
+
+footer ul li i {
+  color: #68b894;
+  margin-right: 8px;
+}
+
+/* Copyright Row */
+.copyright {
+  border-top: 1px solid #285443;
+  padding-top: var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  font-size: 13px;
+  color: #8fa699;
+}
+
+.copyright-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.copyright-links a {
+  color: #8fa699;
+  transition: color var(--transition-fast);
+}
+
+.copyright-links a:hover {
+  color: #FFFFFF;
+}
+
+/* TABLET RESPONSIVE (768px - 1024px) */
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+  }
+}
+
+/* MOBILE RESPONSIVE (<768px) */
+@media (max-width: 768px) {
+  footer {
+    padding-top: var(--space-3xl);
+    padding-bottom: var(--space-lg);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+  }
+
+  .copyright {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12px;
+  }
+}
+

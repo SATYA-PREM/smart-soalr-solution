@@ -62,8 +62,7 @@ export default function MapEmbed({
         borderRadius,
         overflow: "hidden",
         border: "1px solid var(--border)",
-        background:
-          "radial-gradient(circle at 30% 30%, rgba(16, 185, 91, 0.14), transparent 60%), linear-gradient(135deg, var(--bg-soft) 0%, var(--card-solid) 100%)",
+        background: "var(--soft-sage)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -75,16 +74,17 @@ export default function MapEmbed({
     >
       <div
         style={{
-          width: "52px",
-          height: "52px",
-          borderRadius: "50%",
-          background: "rgba(16, 185, 91, 0.14)",
-          border: "1px solid rgba(16, 185, 91, 0.3)",
+          width: "48px",
+          height: "48px",
+          borderRadius: "var(--radius-sm)",
+          background: "var(--pure-white)",
+          border: "1px solid var(--border)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "var(--green)",
-          fontSize: "22px",
+          color: "var(--forest-green)",
+          fontSize: "20px",
+          boxShadow: "var(--shadow-subtle)",
         }}
       >
         <i className="fa-solid fa-map-location-dot"></i>
@@ -94,8 +94,9 @@ export default function MapEmbed({
         <strong
           style={{
             display: "block",
-            fontSize: "16px",
-            color: "var(--text)",
+            fontSize: "15px",
+            fontWeight: "700",
+            color: "var(--text-primary)",
             marginBottom: "4px",
           }}
         >
@@ -104,9 +105,10 @@ export default function MapEmbed({
         <span
           style={{
             fontSize: "13px",
-            color: "var(--muted)",
+            color: "var(--text-secondary)",
             display: "block",
             maxWidth: "360px",
+            lineHeight: "1.5",
           }}
         >
           Main Road, Near State Bank of India, Tarapur, Munger, Bihar – 813221

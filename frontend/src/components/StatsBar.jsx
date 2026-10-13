@@ -53,19 +53,19 @@ export default function StatsBar() {
       <div className="container stats-grid">
         <div className="stat">
           <CounterNumber target={150} />
-          <span>Successful Installations</span>
+          <span>Installations Across Bihar</span>
         </div>
         <div className="stat">
           <strong>25+ Yrs</strong>
-          <span>Panel Warranty*</span>
+          <span>Tier-1 Performance Warranty</span>
         </div>
         <div className="stat">
-          <strong>24/7</strong>
-          <span>Clean Solar Potential</span>
+          <strong>PM Surya Ghar</strong>
+          <span>Direct Subsidy Assistance</span>
         </div>
         <div className="stat">
-          <strong>6+</strong>
-          <span>Solution Categories</span>
+          <strong>Local Support</strong>
+          <span>Tarapur Engineering Center</span>
         </div>
       </div>
     </section>

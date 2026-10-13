@@ -46,7 +46,7 @@ export default function About() {
                 'url("/ChatGPT Image Feb 11, 2026, 12_23_15 PM-thumb.webp")',
               backgroundSize: "cover",
               backgroundPosition: "center",
-              borderRadius: "24px",
+              borderRadius: "var(--radius-lg)",
             }}
           >
             <ProgressiveImage
@@ -313,7 +313,7 @@ export default function About() {
               <MapEmbed
                 title="Smart Solar Solutions Location Map"
                 height="420px"
-                borderRadius="24px"
+                borderRadius="16px"
               />
             </div>
           </div>

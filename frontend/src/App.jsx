@@ -10,6 +10,8 @@ import Gallery from "./pages/Gallery";
 import Clients from "./pages/Clients";
 import SolarDataNotice from "./pages/SolarDataNotice";
 import SolarServiceTerms from "./pages/SolarServiceTerms";
+import OfferModal from "./components/OfferModal";
+import FloatingOfferCard from "./components/FloatingOfferCard";
 
 function RouteScrollAndTitleManager() {
   const { pathname, hash } = useLocation();
@@ -138,6 +140,9 @@ export default function App() {
 
         <Footer />
 
+        {/* PERMANENT RIGHT BOTTOM POPUP */}
+        <FloatingOfferCard />
+
         {/* FLOATING WHATSAPP */}
         <a
           className="float-wa"
@@ -148,6 +153,9 @@ export default function App() {
         >
           <i className="fa-brands fa-whatsapp"></i>
         </a>
+
+        {/* ON-LOAD / REFRESH OFFER POPUP MODAL */}
+        <OfferModal />
 
         {/* LIGHTBOX MODAL */}
         <Lightbox

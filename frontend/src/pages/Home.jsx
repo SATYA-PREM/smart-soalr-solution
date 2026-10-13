@@ -105,29 +105,20 @@ export default function Home({ openLightbox }) {
 
   return (
     <main>
-      {/* HERO SECTION WITH ANIMATED SOLAR BACKGROUND */}
+      {/* HERO SECTION — ARCHITECTURAL EDITORIAL SPLIT */}
       <section className="hero">
-        <div className="solar-bg-animation">
-          <div className="solar-sun-ring"></div>
-          <div className="solar-photon-orbit"></div>
-          <div className="solar-particle sp1"></div>
-          <div className="solar-particle sp2"></div>
-          <div className="solar-particle sp3"></div>
-        </div>
-
         <div className="container hero-grid">
           <div className="hero-copy">
-            <div className="eyebrow">
-              <i className="fa-solid fa-bolt"></i> SMART ENERGY • SMART
-              INVESTMENT
+            <div className="eyebrow left">
+              <i className="fa-solid fa-solar-panel"></i> SOLAR ENGINEERING & EPC CONTRACTOR
             </div>
             <h1>
-              Power your future with <span>smart solar.</span>
+              Engineered solar power for <span>homes, businesses & agriculture.</span>
             </h1>
             <p>
-              Reliable solar energy systems for homes, businesses, farms, and
-              industrial plants — tailored around your electricity load, roof
-              area, and budget in Bihar.
+              Custom-designed rooftop solar systems, agricultural water pumps,
+              and hybrid energy storage tailored around your electricity load, roof
+              area, and Bihar DISCOM net-metering regulations.
             </p>
             <div className="actions">
               <a
@@ -138,26 +129,23 @@ export default function Home({ openLightbox }) {
                 <i className="fa-solid fa-calculator"></i> Solar Calculator
               </a>
               <a
-                className="btn btn-green"
-                href="https://wa.me/919931798080?text=Hello%20Smart%20Solar%20Solutions,%20I%20want%20a%20solar%20system%20recommendation."
+                className="btn btn-outline"
+                href="https://wa.me/919931798080?text=Hello%20Smart%20Solar%20Solutions,%20I%20want%20a%20solar%20system%20quotation."
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i className="fa-brands fa-whatsapp"></i> Get Free Quote
+                <i className="fa-brands fa-whatsapp"></i> Get Free Quotation
               </a>
             </div>
             <div className="hero-proof">
               <span>
-                <i className="fa-solid fa-circle-check"></i> Site-focused
-                Planning
+                <i className="fa-solid fa-circle-check"></i> Site-Focused Planning
               </span>
               <span>
-                <i className="fa-solid fa-circle-check"></i> Residential &
-                Commercial
+                <i className="fa-solid fa-circle-check"></i> Tier-1 Monocrystalline Tech
               </span>
               <span>
-                <i className="fa-solid fa-circle-check"></i> Govt. Subsidy
-                Assistance
+                <i className="fa-solid fa-circle-check"></i> PM Surya Ghar Subsidy Support
               </span>
             </div>
           </div>
