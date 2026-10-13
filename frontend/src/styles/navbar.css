@@ -16,7 +16,7 @@
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  height: 76px;
+  height: 78px;
   gap: var(--space-md);
   width: 100%;
 }
@@ -32,8 +32,8 @@
 }
 
 .brand img {
-  width: 42px;
-  height: 42px;
+  width: 56px;
+  height: 56px;
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -185,11 +185,20 @@
 
 /* Tablet & Mobile Media Queries */
 @media (max-width: 960px) {
+  .navbar {
+    --nav-mobile-h: 72px;
+  }
+
   .nav-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 68px;
+    height: var(--nav-mobile-h, 72px);
+  }
+
+  .brand img {
+    width: 52px;
+    height: 52px;
   }
 
   .nav-actions {
@@ -221,30 +230,27 @@
   /* Mobile Slide-in Drawer */
   .nav-links {
     position: fixed;
-    top: 68px;
+    top: var(--nav-mobile-h, 72px);
     left: 0;
     right: 0;
     bottom: 0;
     width: 100%;
     width: 100vw;
-    height: calc(100vh - 68px);
-    height: calc(100dvh - 68px);
+    height: calc(100vh - var(--nav-mobile-h, 72px));
+    height: calc(100dvh - var(--nav-mobile-h, 72px));
     background-color: var(--pure-white);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     align-items: stretch;
     padding: var(--space-xl) var(--space-lg);
     gap: var(--space-xs);
     border-top: 1px solid var(--border);
     transform: translateX(100%);
-    transition: transform var(--transition-normal);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition: transform var(--transition-normal), opacity var(--transition-normal), visibility var(--transition-normal);
     overflow-y: auto;
-    z-index: 99;
     -webkit-overflow-scrolling: touch;
     z-index: 1020;
   }
@@ -291,13 +297,21 @@
 }
 
 @media (max-width: 480px) {
+  .navbar {
+    --nav-mobile-h: 70px;
+  }
+
+  .brand {
+    gap: 10px;
+  }
+
   .brand img {
-    width: 36px;
-    height: 36px;
+    width: 50px;
+    height: 50px;
   }
 
   .brand-text strong {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .brand-text small {
@@ -318,16 +332,24 @@
 }
 
 @media (max-width: 360px) {
+  .navbar {
+    --nav-mobile-h: 68px;
+  }
+
+  .brand {
+    gap: 8px;
+  }
+
   .brand-text small {
     display: none;
   }
 
   .brand-text strong {
-    font-size: 13px;
+    font-size: 13.5px;
   }
 
   .brand img {
-    width: 32px;
-    height: 32px;
+    width: 44px;
+    height: 44px;
   }
 }

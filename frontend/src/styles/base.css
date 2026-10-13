@@ -146,18 +146,10 @@ button {
   min-width: 0;
 }
 
-@media (max-width: 900px) {
 @media (max-width: 1024px) {
   .container {
     padding-left: var(--space-lg);
     padding-right: var(--space-lg);
-  }
-}
-
-@media (max-width: 600px) {
-  .container {
-    padding-left: var(--space-md);
-    padding-right: var(--space-md);
   }
 }
 

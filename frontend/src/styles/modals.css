@@ -141,16 +141,18 @@
 
 .floating-corner-offer {
   position: fixed;
-  bottom: 88px;
-  right: 20px;
-  z-index: 990;
+  bottom: 24px;
+  right: 94px;
+  z-index: 995;
   width: 280px;
-  max-width: calc(100vw - 32px);
+  max-width: calc(100vw - 110px);
   transition: all var(--transition-normal);
 }
 
 .floating-corner-offer.minimized {
   width: auto;
+  bottom: 24px;
+  right: 94px;
 }
 
 .floating-offer-card-body {
@@ -320,12 +322,21 @@
     justify-content: center;
   }
 
-  /* Floating Corner Widget on Mobile */
+  /* Floating Corner Widget on Tablet (to the left of WhatsApp) */
   .floating-corner-offer {
-    bottom: 76px;
-    right: 14px;
-    width: 240px;
-    max-width: calc(100vw - 28px);
+    bottom: 18px;
+    right: 80px;
+    left: 16px;
+    width: auto;
+    max-width: 380px;
+    margin-left: auto;
+  }
+
+  .floating-corner-offer.minimized {
+    bottom: 18px;
+    right: 80px;
+    left: auto;
+    width: auto;
   }
 
   .floating-offer-pill-btn {
@@ -334,8 +345,8 @@
   }
 
   .floating-offer-cta {
-    font-size: 11px;
-    padding: 8px 10px;
+    font-size: 12px;
+    padding: 9px 12px;
   }
 }
 
@@ -365,40 +376,79 @@
     font-size: 13.5px;
   }
 
-  /* Floating Corner Widget on Small Mobile */
+  /* Floating Corner Widget on Mobile: Full Horizontal View Extending to the Left */
   .floating-corner-offer {
-    bottom: 70px;
-    right: 12px;
-    width: 220px;
-    max-width: calc(100vw - 24px);
+    bottom: 16px;
+    left: 12px;
+    right: 70px;
+    width: auto;
+    max-width: none;
+    margin-left: 0;
   }
 
   .floating-corner-offer.minimized {
-    bottom: 70px;
-    right: 12px;
+    bottom: 16px;
+    left: auto;
+    right: 70px;
+    width: auto;
+  }
+
+  .floating-offer-card-body {
+    border-radius: var(--radius-md);
+    box-shadow: 0 10px 32px rgba(24, 61, 48, 0.32);
   }
 
   .floating-offer-header {
-    padding: 6px 10px;
+    padding: 7px 12px;
   }
 
   .floating-offer-tag {
-    font-size: 10px;
+    font-size: 11px;
+    letter-spacing: 0.05em;
   }
 
-  .floating-offer-close {
-    width: 22px;
-    height: 22px;
-    font-size: 12px;
+  .floating-offer-minimize {
+    padding: 3px 6px;
+    font-size: 14px;
+  }
+
+  .floating-offer-footer {
+    padding: 8px 10px;
+  }
+
+  .floating-offer-cta {
+    font-size: 13px;
+    padding: 10px 14px;
+    font-weight: 700;
   }
 }
 
 /* ULTRA-COMPACT MOBILE (<360px) */
 @media (max-width: 360px) {
   .floating-corner-offer {
-    width: 200px;
-    bottom: 68px;
-    right: 8px;
+    bottom: 14px;
+    left: 8px;
+    right: 64px;
+    width: auto;
+    max-width: none;
+  }
+
+  .floating-corner-offer.minimized {
+    bottom: 14px;
+    left: auto;
+    right: 64px;
+    width: auto;
+  }
+
+  .floating-offer-pill-btn {
+    padding: 7px 10px;
+    font-size: 11px;
+    gap: 5px;
+  }
+
+  .floating-offer-cta {
+    font-size: 12px;
+    padding: 9px 10px;
   }
 }
 
