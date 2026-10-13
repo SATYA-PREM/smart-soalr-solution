@@ -52,7 +52,7 @@ export default function StatsBar() {
     <section className="stats">
       <div className="container stats-grid">
         <div className="stat">
-          <CounterNumber target={150} />
+          <CounterNumber target={50} />
           <span>Installations Across Bihar</span>
         </div>
         <div className="stat">
@@ -64,8 +64,8 @@ export default function StatsBar() {
           <span>Direct Subsidy Assistance</span>
         </div>
         <div className="stat">
-          <strong>Local Support</strong>
-          <span>Tarapur Engineering Center</span>
+          <strong>24/7 Support</strong>
+          <span>Dedicated Customer Care</span>
         </div>
       </div>
     </section>

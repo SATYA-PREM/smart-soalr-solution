@@ -338,6 +338,46 @@ h3 {
   filter: blur(0);
 }
 
+/* =========================================================
+   FLOATING WHATSAPP CTA BUTTON
+   ========================================================= */
+
+.float-wa {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #25D366;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.45);
+  z-index: 999;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.float-wa:hover {
+  transform: translateY(-3px) scale(1.08);
+  background-color: #20bd5a;
+  box-shadow: 0 8px 26px rgba(37, 211, 102, 0.6);
+  color: #FFFFFF;
+}
+
+@media (max-width: 768px) {
+  .float-wa {
+    bottom: 18px;
+    right: 18px;
+    width: 50px;
+    height: 50px;
+    font-size: 26px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

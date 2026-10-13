@@ -57,7 +57,7 @@ export default function About() {
               loading="lazy"
             />
             <div className="about-badge">
-              <strong>150+</strong>
+              <strong>50+</strong>
               <span>Projects Delivered</span>
             </div>
           </div>

@@ -102,8 +102,8 @@ export default function SolarServiceTerms() {
                 </li>
                 <li>
                   <strong>Workmanship Warranty:</strong> We provide dedicated
-                  local after-sales installation and maintenance support from
-                  our Tarapur engineering center.
+                  after-sales installation and maintenance support from
+                  our Tarapur office and 24/7 support team.
                 </li>
               </ul>
             </div>

@@ -110,15 +110,16 @@ export default function Home({ openLightbox }) {
         <div className="container hero-grid">
           <div className="hero-copy">
             <div className="eyebrow left">
-              <i className="fa-solid fa-solar-panel"></i> SOLAR ENGINEERING & EPC CONTRACTOR
+              <i className="fa-solid fa-solar-panel"></i> SMART SOLAR SOLUTIONS • #1 SOLAR EPC CONTRACTOR IN BIHAR
             </div>
             <h1>
-              Engineered solar power for <span>homes, businesses & agriculture.</span>
+              Power your property with <span>Smart Solar Solutions.</span>
             </h1>
             <p>
-              Custom-designed rooftop solar systems, agricultural water pumps,
-              and hybrid energy storage tailored around your electricity load, roof
-              area, and Bihar DISCOM net-metering regulations.
+              Bihar's trusted leader for high-efficiency rooftop solar installations,
+              PM Surya Ghar subsidy approvals up to ₹78,000, solar water pumps,
+              and hybrid energy storage. Custom engineered for homes, commercial
+              complexes, and agriculture across Tarapur, Munger & Bihar.
             </p>
             <div className="actions">
               <a
@@ -139,13 +140,16 @@ export default function Home({ openLightbox }) {
             </div>
             <div className="hero-proof">
               <span>
-                <i className="fa-solid fa-circle-check"></i> Site-Focused Planning
+                <i className="fa-solid fa-circle-check"></i> 50+ Installations Across Bihar
               </span>
               <span>
-                <i className="fa-solid fa-circle-check"></i> Tier-1 Monocrystalline Tech
+                <i className="fa-solid fa-circle-check"></i> PM Surya Ghar Subsidy (Up to ₹78k)
               </span>
               <span>
-                <i className="fa-solid fa-circle-check"></i> PM Surya Ghar Subsidy Support
+                <i className="fa-solid fa-circle-check"></i> Tier-1 Tech & 25-Yr Warranty
+              </span>
+              <span>
+                <i className="fa-solid fa-circle-check"></i> 24/7 Dedicated Support
               </span>
             </div>
           </div>
@@ -157,7 +161,7 @@ export default function Home({ openLightbox }) {
               style={{
                 backgroundImage: `url("${activeSlideObj.thumb}")`,
                 backgroundSize: "cover",
-                backgroundPosition: "center",
+                backgroundPosition: "top center",
               }}
             >
               {HERO_SLIDES.map((slide, idx) => (
@@ -173,6 +177,9 @@ export default function Home({ openLightbox }) {
                 />
               ))}
               <div className="hero-slider-overlay"></div>
+              <div className="hero-slide-badge">
+                <i className="fa-solid fa-solar-panel"></i> {activeSlideObj.alt}
+              </div>
               <div className="hero-slider-dots" id="heroDots">
                 {HERO_SLIDES.map((_, idx) => (
                   <button
@@ -620,8 +627,8 @@ export default function Home({ openLightbox }) {
               </h2>
               <p>
                 Learn more about our company background, certified engineering
-                standards, 150+ completed projects, and local support in
-                Tarapur.
+                standards, 50+ completed projects, and 24/7 support in
+                Tarapur, Munger & Bihar.
               </p>
             </div>
             <Link className="btn btn-green" to="/about">

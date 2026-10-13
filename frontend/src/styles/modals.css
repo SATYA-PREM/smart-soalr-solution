@@ -141,9 +141,9 @@
 
 .floating-corner-offer {
   position: fixed;
-  bottom: 86px;
+  bottom: 88px;
   right: 20px;
-  z-index: 89;
+  z-index: 990;
   width: 280px;
   max-width: calc(100vw - 32px);
   transition: all var(--transition-normal);
@@ -322,7 +322,7 @@
 
   /* Floating Corner Widget on Mobile */
   .floating-corner-offer {
-    bottom: 84px;
+    bottom: 76px;
     right: 14px;
     width: 240px;
     max-width: calc(100vw - 28px);

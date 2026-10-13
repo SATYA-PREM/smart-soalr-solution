@@ -102,7 +102,7 @@ export default function Gallery({ openLightbox }) {
           <div className="gallery-bottom-bar">
             <div className="gallery-bottom-copy">
               <div className="eyebrow left">
-                <i className="fa-solid fa-camera-retro"></i> 150+ LIVE
+                <i className="fa-solid fa-camera-retro"></i> 50+ LIVE
                 INSTALLATIONS
               </div>
               <h3>Want to see more project videos & photos?</h3>

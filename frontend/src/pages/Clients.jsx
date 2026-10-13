@@ -102,7 +102,7 @@ export default function Clients() {
               </h2>
               <p>
                 Get custom engineering design, load calculation, DISCOM
-                net-metering assistance, and a full list of 150+ reference
+                net-metering assistance, and a full list of 50+ reference
                 installations across Bihar.
               </p>
             </div>

@@ -8,12 +8,7 @@ const FLOATING_OFFER_WHATSAPP_URL = `https://wa.me/919931798080?text=${encodeURI
 )}`;
 
 export default function FloatingOfferCard() {
-  const [isMinimized, setIsMinimized] = useState(() => {
-    if (typeof window !== "undefined") {
-      return window.innerWidth <= 768;
-    }
-    return false;
-  });
+  const [isMinimized, setIsMinimized] = useState(false);
 
   return (
     <aside
